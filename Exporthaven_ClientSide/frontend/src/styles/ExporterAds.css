@@ -1,0 +1,17 @@
+.exporter-ads-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .exporter-ads-container h1 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  @media (max-width: 768px) {
+    .exporter-ads-container {
+      padding: 10px;
+    }
+  }
