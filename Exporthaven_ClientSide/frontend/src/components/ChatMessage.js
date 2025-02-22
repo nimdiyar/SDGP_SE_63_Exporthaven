@@ -14,3 +14,13 @@ const ChatMessage = ({ message, isOwnMessage }) => {
   );
 };
 
+ChatMessage.propTypes = {
+  message: PropTypes.shape({
+    content: PropTypes.string.isRequired,
+    timestamp: PropTypes.string,
+    sender: PropTypes.string,
+  }).isRequired,
+  isOwnMessage: PropTypes.bool,
+};
+
+export default ChatMessage;
