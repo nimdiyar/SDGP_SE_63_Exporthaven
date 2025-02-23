@@ -34,6 +34,26 @@ function ContactUs() {
             </p>
           </div>
         </div>
+         {/* Main Content */}
+      <div className="main-content">
+        <div className="grid-container">
+          {/* Contact Information Cards */}
+          <div className="info-cards">
+            <div className="card accent-border">
+              <div className="card-content">
+                <Building2 className="card-icon" size={24} />
+                <div>
+                  <h3 className="card-title">Our Office</h3>
+                  <p className="card-text">
+                    World Trade Center, Colombo 01, Sri Lanka
+                  </p>
+                </div>
+              </div>
+            </div>
+    </div>
+    </div>
+    </div>
     </div>
     );
   }
+  export default ContactUs;
