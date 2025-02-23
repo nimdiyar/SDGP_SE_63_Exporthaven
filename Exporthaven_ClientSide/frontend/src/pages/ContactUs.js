@@ -23,4 +23,17 @@ function ContactUs() {
         [e.target.name]: e.target.value,
       });
     };
+    return (
+      <div className="contact-page">
+        {/* Header Section */}
+        <div className="ContactUs-header">
+          <div className="ContactUs-header-content">
+            <h1 className="ContactUs-header-title">Contact Us</h1>
+            <p className="header-subtitle">
+              Connect with Sri Lanka's Premier Export Platform
+            </p>
+          </div>
+        </div>
+    </div>
+    );
   }
