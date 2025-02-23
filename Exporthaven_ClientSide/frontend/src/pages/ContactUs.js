@@ -50,6 +50,18 @@ function ContactUs() {
                 </div>
               </div>
             </div>
+            <div className="contactUs-card accent-border">
+              <div className="card-content">
+                <Clock className="card-icon" size={24} />
+                <div>
+                  <h3 className="card-title">Business Hours</h3>
+                  <p className="card-text">
+                    Monday - Friday: 9:00 AM - 6:00 PM
+                  </p>
+                  <p className="card-text">Saturday: 9:00 AM - 1:00 PM</p>
+                </div>
+              </div>
+            </div>
     </div>
     </div>
     </div>
