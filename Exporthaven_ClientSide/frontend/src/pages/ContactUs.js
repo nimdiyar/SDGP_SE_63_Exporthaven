@@ -96,6 +96,11 @@ function ContactUs() {
               </div>
             </div>
     </div>
+    {/* Contact Form */}
+    <div className="contact-form">
+            <h2 className="form-title">Send us a Message</h2>
+            <form onSubmit={handleSubmit}>
+              </form></div>
     </div>
     </div>
     </div>
