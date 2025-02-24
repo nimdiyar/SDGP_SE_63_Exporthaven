@@ -83,6 +83,18 @@ function ContactUs() {
                 </div>
               </div>
             </div>
+            <div className="contactUs-card">
+              <div className="card-content">
+                <MapPin className="card-icon" size={24} />
+                <div>
+                  <h3 className="card-title">Location</h3>
+                  <p className="card-text">
+                    Strategically located in the heart of Colombo's business
+                    district, we're here to facilitate your export journey.
+                  </p>
+                </div>
+              </div>
+            </div>
     </div>
     </div>
     </div>
