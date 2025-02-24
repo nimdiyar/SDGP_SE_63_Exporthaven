@@ -100,6 +100,20 @@ function ContactUs() {
     <div className="contact-form">
             <h2 className="form-title">Send us a Message</h2>
             <form onSubmit={handleSubmit}>
+            <div className="form-group">
+                <label htmlFor="name" className="form-label">
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="form-input"
+                  required
+                />
+              </div>
               </form></div>
     </div>
     </div>
