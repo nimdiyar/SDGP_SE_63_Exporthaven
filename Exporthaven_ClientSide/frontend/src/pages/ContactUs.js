@@ -62,6 +62,27 @@ function ContactUs() {
                 </div>
               </div>
             </div>
+            <div className="small-cards-grid">
+              <div className="contactUs-card">
+                <div className="card-content">
+                  <Phone className="card-icon" size={20} />
+                  <div>
+                    <h3 className="card-title">Phone</h3>
+                    <p className="card-text">+94 11 234 5678</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="contactUs-card">
+                <div className="card-content">
+                  <Mail className="card-icon" size={20} />
+                  <div>
+                    <h3 className="card-title">Email</h3>
+                    <p className="card-text">info@sriexports.com</p>
+                  </div>
+                </div>
+              </div>
+            </div>
     </div>
     </div>
     </div>
