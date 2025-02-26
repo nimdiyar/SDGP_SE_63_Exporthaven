@@ -142,6 +142,19 @@ function ContactUs() {
                   required
                 />
               </div>
+              <div className="form-group">
+                <label htmlFor="message" className="form-label">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="form-textarea"
+                  required
+                />
+              </div>
               </form></div>
     </div>
     </div>
