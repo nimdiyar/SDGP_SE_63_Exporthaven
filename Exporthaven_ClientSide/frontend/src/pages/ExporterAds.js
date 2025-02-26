@@ -1,12 +1,7 @@
-import "../styles/ExporterAds.css";
+import React from "react";
 
 const ExporterAds = () => {
-  // Empty component structure
-  return (
-    <div className="exporter-ads-container">
-      <h1>Exporter Ads</h1>
-    </div>
-  );
+  return <div>Exporter Ads will be displayed here.</div>;
 };
 
 export default ExporterAds;
