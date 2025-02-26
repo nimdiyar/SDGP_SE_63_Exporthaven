@@ -155,6 +155,10 @@ function ContactUs() {
                   required
                 />
               </div>
+              <button type="submit" className="submit-button">
+                <Send size={20} />
+                <span>Send Message</span>
+              </button>
               </form></div>
     </div>
     </div>
