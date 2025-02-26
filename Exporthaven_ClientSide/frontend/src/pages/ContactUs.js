@@ -114,6 +114,20 @@ function ContactUs() {
                   required
                 />
               </div>
+              <div className="form-group">
+                <label htmlFor="email" className="form-label">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="form-input"
+                  required
+                />
+              </div>
               </form></div>
     </div>
     </div>
