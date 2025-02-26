@@ -128,6 +128,20 @@ function ContactUs() {
                   required
                 />
               </div>
+              <div className="form-group">
+                <label htmlFor="subject" className="form-label">
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  className="form-input"
+                  required
+                />
+              </div>
               </form></div>
     </div>
     </div>
