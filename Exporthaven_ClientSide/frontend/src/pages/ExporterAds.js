@@ -37,7 +37,7 @@ const ExporterAds = () => {
           placeholder="Select Location"
         />
         <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-          <option value="newest">Newest First</option>
+          <option value="newest">Newest First.</option>
           <option value="oldest">Oldest First</option>
         </select>
       </div>
