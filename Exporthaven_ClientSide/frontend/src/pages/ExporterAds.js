@@ -1,33 +1,47 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import API_BASE_URL from "../utils/apiConfig";
+import CategoryDropdown from "../components/CategoryDropdown";
+import LocationDropdown from "../components/LocationDropdown";
 
 const ExporterAds = () => {
   const [ads, setAds] = useState([]);
+  const [filters, setFilters] = useState({ category: "", location: "" });
+  const [sortBy, setSortBy] = useState("newest");
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchAds = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/api/ads/exporters`);
+        const response = await axios.get(`${API_BASE_URL}/api/ads/exporters`, {
+          params: { ...filters, sort: sortBy },
+        });
         setAds(response.data);
       } catch (err) {
         setError("Failed to fetch ads.");
       }
     };
     fetchAds();
-  }, []);
-
-  if (error) return <div>{error}</div>;
+  }, [filters, sortBy]);
 
   return (
     <div>
       <h1>Exporter Ads</h1>
-      <ul>
-        {ads.map((ad) => (
-          <li key={ad._id}>{ad.title}</li>
-        ))}
-      </ul>
+      <div className="filters">
+        <CategoryDropdown
+          categories={["textiles", "food", "electronics", "machinery"]}
+          value={filters.category}
+          onChange={(value) => setFilters({ ...filters, category: value })}
+          placeholder="All Categories"
+        />
+        <LocationDropdown
+          value={filters.location}
+          onChange={(value) => setFilters({ ...filters, location: value })}
+          placeholder="Select Location"
+        />
+        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
+      </div>
+      {/* Render ads list here */}
     </div>
   );
 };
