@@ -1,0 +1,43 @@
+// src/controllers/userController.js
+const User = require("../models/User");
+
+const getUserProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    if (!user) return res.status(404).json({ message: "User not found" });
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching profile", error });
+  }
+};
+
+const updateUserProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    user.name = req.body.name || user.name;
+    user.companyName = req.body.companyName || user.companyName;
+    user.phone = req.body.phone || user.phone;
+    user.address = req.body.address || user.address;
+    user.website = req.body.website || user.website;
+    user.location = req.body.location || user.location;
+
+    // If a new profile photo file is uploaded, update the field.
+    if (req.file) {
+      user.profilePhoto = `${req.protocol}://${req.get("host")}/uploads/${
+        req.file.filename
+      }`;
+    }
+
+    if (req.body.password) {
+      user.password = req.body.password;
+    }
+    const updatedUser = await user.save();
+    res.json(updatedUser);
+  } catch (error) {
+    res.status(500).json({ message: "Error updating profile", error });
+  }
+};
+
+module.exports = { getUserProfile, updateUserProfile };
