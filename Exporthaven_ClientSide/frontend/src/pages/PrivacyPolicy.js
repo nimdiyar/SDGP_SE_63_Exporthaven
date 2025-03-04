@@ -6,6 +6,13 @@ const PrivacyPolicy = () => {
         <div className="privacy-policy">
             <h1>Privacy Policy</h1>
             <p>We are committed to protecting your personal data and privacy.</p>
+            <section>
+        <h2>Information Collection</h2>
+        <p>
+          We collect your email, phone number, and company details to enhance
+          your experience on our platform.
+        </p>
+      </section>
 
         </div>
 
