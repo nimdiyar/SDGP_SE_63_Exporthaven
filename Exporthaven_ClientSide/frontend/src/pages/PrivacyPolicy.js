@@ -20,6 +20,13 @@ const PrivacyPolicy = () => {
           comply with regulations.
         </p>
       </section>
+      <section>
+        <h2>Your Rights</h2>
+        <p>
+          You have the right to request data deletion or modification at any
+          time.
+        </p>
+      </section>
 
         </div>
 
