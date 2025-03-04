@@ -13,6 +13,13 @@ const PrivacyPolicy = () => {
           your experience on our platform.
         </p>
       </section>
+      <section>
+        <h2>How We Use Your Data</h2>
+        <p>
+          Your data is used to provide services, improve user experience, and
+          comply with regulations.
+        </p>
+      </section>
 
         </div>
 
