@@ -23,8 +23,15 @@ const TermsOfService = () => {
                 The platform must be used for legal trade and export purposes only.
             </p>
             </section>
+
+            <section>
+            <h2>Termination Policy</h2>
+            <p>
+                We reserve the right to terminate accounts violating our policies.
+            </p>
+            </section>
             
-        </div>
+         </div>
     );
 };
 
