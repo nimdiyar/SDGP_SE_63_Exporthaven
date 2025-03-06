@@ -16,6 +16,13 @@ const TermsOfService = () => {
                 business details.
             </p>
             </section>
+
+            <section>
+            <h2>Platform Usage</h2>
+            <p>
+                The platform must be used for legal trade and export purposes only.
+            </p>
+            </section>
             
         </div>
     );
