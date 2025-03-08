@@ -1,0 +1,10 @@
+.contact-page {
+    min-height: 100vh;
+    background-color: #f5f7fa;
+  }
+  
+  .ContactUs-header {
+    background-color: #00246b;
+    color: white;
+    padding: 4rem 1rem;
+  }
