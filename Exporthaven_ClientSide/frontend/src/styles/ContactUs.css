@@ -76,3 +76,13 @@
   .card-text {
     color: #4b5563;
   }
+  .small-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (min-width: 640px) {
+    .small-cards-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
