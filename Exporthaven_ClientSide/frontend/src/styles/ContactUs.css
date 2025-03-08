@@ -8,3 +8,19 @@
     color: white;
     padding: 4rem 1rem;
   }
+  .ContactUs-header-content {
+    max-width: 80rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .ContactUs-header-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .header-subtitle {
+    font-size: 1.125rem;
+    color: #90e0ef;
+  }
