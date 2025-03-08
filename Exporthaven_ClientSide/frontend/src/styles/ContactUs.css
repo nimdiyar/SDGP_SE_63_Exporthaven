@@ -40,3 +40,39 @@
       grid-template-columns: 1fr 1fr;
     }
   }
+  .info-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .contactUs-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+  }
+  
+  .card.accent-border {
+    border-left: 4px solid #0077b6;
+  }
+  
+  .card-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .card-icon {
+    color: #0077b6;
+  }
+  
+  .card-title {
+    color: #1c1f2e;
+    font-weight: 600;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-text {
+    color: #4b5563;
+  }
