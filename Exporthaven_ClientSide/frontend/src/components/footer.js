@@ -14,6 +14,21 @@ const Footer = () => {
 
     return (
         <footer className="footer">
+            <div className="footer-content">
+
+            </div>
+            <div className="footer-bottom">
+                <div className="footer-bottom-content">
+                    <p>
+                        &copy; {new Date().getFullYear()} ExportHaven. All rights reserved.
+                    </p>
+                    <div className="footer-bottom-links">
+                        <Link to="/privacy-policy">Privacy</Link>
+                        <Link to="/terms-of-service">Terms</Link>
+                        <Link to="/sitemap">Sitemap</Link>
+                    </div>
+                </div>
+            </div>
         </footer>
     );
 };
