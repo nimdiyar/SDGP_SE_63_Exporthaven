@@ -1,7 +1,7 @@
 // src/components/LocationDropdown.js
 import React from "react";
 import PropTypes from "prop-types";
-
+import "../styles/LocationDropdown.css";
 
 const LocationDropdown = ({
     value,
@@ -11,6 +11,7 @@ const LocationDropdown = ({
     return( 
          <select value={value}
     onChange={(e) => onChange(e.target.value)}
+    className="location-dropdown"
 >
         <option value="">{placeholder}</option>
         <option value="Kandy">Kandy</option>
