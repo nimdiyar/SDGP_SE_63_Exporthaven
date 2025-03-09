@@ -42,6 +42,10 @@ const LocationDropdown = ({
     </select>
     );
   };
-  
+  LocationDropdown.propTypes = {
+    value: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
+    placeholder: PropTypes.string,
+  };
   export default LocationDropdown;
   
