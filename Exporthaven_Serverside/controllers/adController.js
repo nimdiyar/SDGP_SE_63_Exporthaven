@@ -1,8 +1,9 @@
-const Ad = require("../models/Ad");
-const Order = require("../models/Order");
-const User = require("../models/User");
+//controllers\adController.js
+import Ad from "../models/Ad.js";
+import Order from "../models/Order.js";
+import User from "../models/User.js";
 
-const getAllUsers = async (req, res) => {
+export const getAllUsers = async (req, res) => {
   try {
     const users = await User.find().select("-password");
     res.json(users);
@@ -13,7 +14,7 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-const getAllAds = async (req, res) => {
+export const getAllAds = async (req, res) => {
   try {
     const query = req.query.user ? { user: req.query.user } : {};
     const ads = await Ad.find(query);
@@ -25,7 +26,7 @@ const getAllAds = async (req, res) => {
   }
 };
 
-const getExporterAds = async (req, res) => {
+export const getExporterAds = async (req, res) => {
   try {
     const { category, location, sort } = req.query;
     let query = { type: "exporter", status: "approved" };
@@ -42,7 +43,7 @@ const getExporterAds = async (req, res) => {
   }
 };
 
-const getManufacturerAds = async (req, res) => {
+export const getManufacturerAds = async (req, res) => {
   try {
     const { category, location, sort } = req.query;
     let query = { type: "manufacturer", status: "approved" };
@@ -62,7 +63,7 @@ const getManufacturerAds = async (req, res) => {
   }
 };
 
-const createAd = async (req, res) => {
+export const createAd = async (req, res) => {
   try {
     if (!req.files || req.files.length === 0)
       return res.status(400).json({ message: "No images provided" });
@@ -92,7 +93,7 @@ const createAd = async (req, res) => {
   }
 };
 
-const getAdById = async (req, res) => {
+export const getAdById = async (req, res) => {
   try {
     const ad = await Ad.findById(req.params.id).populate(
       "user",
@@ -107,7 +108,7 @@ const getAdById = async (req, res) => {
   }
 };
 
-const submitReview = async (req, res) => {
+export const submitReview = async (req, res) => {
   try {
     const { rating, comment } = req.body;
     const ad = await Ad.findById(req.params.id);
@@ -131,7 +132,7 @@ const submitReview = async (req, res) => {
   }
 };
 
-const updateAd = async (req, res) => {
+export const updateAd = async (req, res) => {
   try {
     const ad = await Ad.findById(req.params.id);
     if (!ad) return res.status(404).json({ message: "Ad not found" });
@@ -154,13 +155,13 @@ const updateAd = async (req, res) => {
   }
 };
 
-const deleteAd = async (req, res) => {
+export const deleteAd = async (req, res) => {
   try {
     const ad = await Ad.findById(req.params.id);
     if (!ad) return res.status(404).json({ message: "Ad not found" });
     if (ad.user.toString() !== req.user.id)
       return res.status(403).json({ message: "Unauthorized" });
-    await ad.remove();
+    await ad.deleteOne();
     res.json({ message: "Ad removed successfully" });
   } catch (error) {
     res
@@ -169,7 +170,7 @@ const deleteAd = async (req, res) => {
   }
 };
 
-const searchAds = async (req, res) => {
+export const searchAds = async (req, res) => {
   try {
     const { term } = req.query;
     if (!term)
@@ -189,7 +190,7 @@ const searchAds = async (req, res) => {
   }
 };
 
-const getAllOrders = async (req, res) => {
+export const getAllOrders = async (req, res) => {
   try {
     const orders = await Order.find()
       .populate("exporter", "companyName email")
@@ -203,7 +204,7 @@ const getAllOrders = async (req, res) => {
   }
 };
 
-const requestOrder = async (req, res) => {
+export const requestOrder = async (req, res) => {
   try {
     const { adId, quantity } = req.body;
     if (!adId || !quantity)
@@ -234,19 +235,4 @@ const requestOrder = async (req, res) => {
         error: error.message,
       });
   }
-};
-
-module.exports = {
-  getAllUsers,
-  getAllAds,
-  getExporterAds,
-  getManufacturerAds,
-  createAd,
-  getAdById,
-  submitReview,
-  updateAd,
-  deleteAd,
-  searchAds,
-  getAllOrders,
-  requestOrder,
 };
