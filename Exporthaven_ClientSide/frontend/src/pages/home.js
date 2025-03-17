@@ -163,7 +163,16 @@ const Home = () => {
           ))}
         </div>
       </section>
-
+ {/* CTA Section */}
+ <section className="cta">
+        <div className="cta-content">
+          <h2>Ready to Expand Your Business?</h2>
+          <p>Join thousands of successful businesses on ExportHaven</p>
+          <Link to="/register" className="cta-button">
+            Get Started Now
+          </Link>
+        </div>
+      </section>
       
       </div>
     );
