@@ -1,6 +1,6 @@
-// routes/adRoutes.js
-const express = require("express");
-const {
+// backend/routes/adRoutes.js
+import express from "express";
+import {
   getAllUsers,
   getAllAds,
   getAllOrders,
@@ -13,21 +13,17 @@ const {
   searchAds,
   requestOrder,
   submitReview,
-} = require("../controllers/adController");
-const { protect, adminProtect } = require("../middleware/authMiddleware");
-const upload = require("../config/multer");
+} from "../controllers/adController.js";
+import { protect, adminProtect } from "../middleware/authMiddleware.js";
+import upload from "../config/multer.js";
 
 const router = express.Router();
 
-// Ad creation with Multer handling multiple images.
 router.post("/", protect, upload.array("images", 5), createAd);
-
 router.get("/users", adminProtect, getAllUsers);
 router.get("/ads", adminProtect, getAllAds);
 router.get("/orders", adminProtect, getAllOrders);
 router.get("/search", searchAds);
-
-// Public routes for ads.
 router.get("/", getAllAds);
 router.get("/exporters", getExporterAds);
 router.get("/manufacturers", getManufacturerAds);
@@ -37,4 +33,4 @@ router.delete("/:id", protect, deleteAd);
 router.post("/:id/review", protect, submitReview);
 router.post("/:id/order", protect, requestOrder);
 
-module.exports = router;
+export default router;

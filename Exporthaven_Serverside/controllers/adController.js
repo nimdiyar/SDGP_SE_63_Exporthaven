@@ -54,12 +54,10 @@ export const getManufacturerAds = async (req, res) => {
     );
     res.json(ads);
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: "Failed to fetch manufacturer ads",
-        error: error.message,
-      });
+    res.status(500).json({
+      message: "Failed to fetch manufacturer ads",
+      error: error.message,
+    });
   }
 };
 
@@ -67,11 +65,21 @@ export const createAd = async (req, res) => {
   try {
     if (!req.files || req.files.length === 0)
       return res.status(400).json({ message: "No images provided" });
-    const { title, description, category, location, price, certifications } =
-      req.body;
+
+    const {
+      title,
+      description,
+      category,
+      location,
+      minPrice,
+      maxPrice,
+      unit,
+      certifications,
+    } = req.body;
     const uploadedImages = req.files.map(
       (file) => `${req.protocol}://${req.get("host")}/uploads/${file.filename}`
     );
+
     const ad = await Ad.create({
       user: req.user.id,
       title,
@@ -79,12 +87,15 @@ export const createAd = async (req, res) => {
       category,
       images: uploadedImages,
       location,
-      price,
+      minPrice,
+      maxPrice,
+      unit,
       certifications,
       type: req.user.role,
       status: "pending",
       reviews: [],
     });
+
     res.status(201).json(ad);
   } catch (error) {
     res
@@ -138,14 +149,18 @@ export const updateAd = async (req, res) => {
     if (!ad) return res.status(404).json({ message: "Ad not found" });
     if (ad.user.toString() !== req.user.id)
       return res.status(403).json({ message: "Unauthorized" });
+
     ad.title = req.body.title || ad.title;
     ad.description = req.body.description || ad.description;
     ad.category = req.body.category || ad.category;
     ad.images = req.body.images || ad.images;
     ad.location = req.body.location || ad.location;
-    ad.price = req.body.price || ad.price;
+    if (req.body.minPrice !== undefined) ad.minPrice = req.body.minPrice;
+    if (req.body.maxPrice !== undefined) ad.maxPrice = req.body.maxPrice;
+    if (req.body.unit !== undefined) ad.unit = req.body.unit;
     ad.certifications = req.body.certifications || ad.certifications;
     ad.status = req.body.status || ad.status;
+
     const updatedAd = await ad.save();
     res.json(updatedAd);
   } catch (error) {
@@ -195,7 +210,7 @@ export const getAllOrders = async (req, res) => {
     const orders = await Order.find()
       .populate("exporter", "companyName email")
       .populate("manufacturer", "companyName email")
-      .populate("ad", "title price");
+      .populate("ad", "title minPrice maxPrice unit");
     res.json(orders);
   } catch (error) {
     res
@@ -228,11 +243,9 @@ export const requestOrder = async (req, res) => {
       .status(201)
       .json({ message: "Order request sent successfully", order: newOrder });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: "Error processing order request",
-        error: error.message,
-      });
+    res.status(500).json({
+      message: "Error processing order request",
+      error: error.message,
+    });
   }
 };
