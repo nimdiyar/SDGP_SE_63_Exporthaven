@@ -3,3 +3,56 @@
     background-color: #f5f7fa;
     color: #1c1f2e;
 }
+
+/* Hero Section */
+.hero {
+    background-color: #f5f7fa;
+    padding: 6rem 2rem;
+    margin-top: 72px;
+  }
+  
+  .hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  
+  .hero-text h1 {
+    color: #00246b;
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  
+  .hero-text p {
+    color: #1c1f2e;
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  
+  .hero-search {
+    margin-bottom: 2rem;
+  }
+  
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  
+  .stat-item h3 {
+    color: #0077b6;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 36, 107, 0.1);
+  }
