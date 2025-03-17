@@ -1,7 +1,9 @@
-const Order = require("../models/Order");
-const Ad = require("../models/Ad");
+//controllers/orderController.js
+import Order from "../models/Order.js";
+import Ad from "../models/Ad.js";
+import Notification from "../models/Notification.js";
 
-const requestOrder = async (req, res) => {
+export const requestOrder = async (req, res) => {
   try {
     const { adId, quantity } = req.body;
     if (!adId || !quantity)
@@ -38,7 +40,7 @@ const requestOrder = async (req, res) => {
   }
 };
 
-const updateOrderStatus = async (req, res) => {
+export const updateOrderStatus = async (req, res) => {
   try {
     const { orderId } = req.params;
     const { status } = req.body;
@@ -51,8 +53,17 @@ const updateOrderStatus = async (req, res) => {
           message: "Unauthorized: Only the exporter can update this order",
         });
     order.status = status;
-    await order.save();
-    res.json({ message: `Order marked as ${status}`, order });
+    const updatedOrder = await order.save();
+
+    if (status === "Approved") {
+      await Notification.create({
+        user: order.manufacturer,
+        message: "Your order has been approved by the exporter.",
+        type: "order",
+      });
+    }
+
+    res.json({ message: `Order marked as ${status}`, order: updatedOrder });
   } catch (error) {
     res
       .status(500)
@@ -60,7 +71,7 @@ const updateOrderStatus = async (req, res) => {
   }
 };
 
-const getManufacturerOrders = async (req, res) => {
+export const getManufacturerOrders = async (req, res) => {
   try {
     const orders = await Order.find({ manufacturer: req.user._id })
       .populate("ad", "title price")
@@ -73,7 +84,7 @@ const getManufacturerOrders = async (req, res) => {
   }
 };
 
-const getExporterOrders = async (req, res) => {
+export const getExporterOrders = async (req, res) => {
   try {
     const orders = await Order.find({ exporter: req.user._id })
       .populate("ad", "title price")
@@ -84,11 +95,4 @@ const getExporterOrders = async (req, res) => {
       .status(500)
       .json({ message: "Error fetching orders", error: error.message });
   }
-};
-
-module.exports = {
-  requestOrder,
-  updateOrderStatus,
-  getManufacturerOrders,
-  getExporterOrders,
 };
