@@ -1,9 +1,9 @@
-// models/Chat.js
-const mongoose = require("mongoose");
+// backend/models/Chat.js
+import mongoose from "mongoose";
 
 const chatSchema = new mongoose.Schema(
   {
-    ad: { type: mongoose.Schema.Types.ObjectId, ref: "Ad" }, // store the ad ID
+    ad: { type: mongoose.Schema.Types.ObjectId, ref: "Ad" },
     participants: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     messages: [
       {
@@ -17,4 +17,4 @@ const chatSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Chat", chatSchema);
+export default mongoose.model("Chat", chatSchema);

@@ -1,16 +1,16 @@
-// routes/chatRoutes.js
-const express = require("express");
-const {
+// backend/routes/chatRoutes.js
+import express from "express";
+import {
   getChat,
   sendMessage,
   getUserChats,
-} = require("../controllers/chatController");
-const { protect } = require("../middleware/authMiddleware");
+} from "../controllers/chatController.js";
+import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-router.get("/:userId1/:userId2", protect, getChat);
-router.post("/send", protect, sendMessage);
 router.get("/user/:userId", protect, getUserChats);
+router.post("/send", protect, sendMessage);
+router.get("/:userId1/:userId2", protect, getChat);
 
-module.exports = router;
+export default router;
