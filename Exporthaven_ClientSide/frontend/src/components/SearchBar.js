@@ -32,6 +32,20 @@ const SearchBar = () => {
                     
                 </button> 
             </form>
+
+            {results.length > 0 && (
+                <div className="search-results">
+                    {results.map((ad) => (
+                        <div key={ad._id} className="search-result-item">
+                            <h4>{ad.title}</h4>
+                            <p>
+                                 {ad.category} - {ad.companyName}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            )}
+            
         </div>
 
     );
