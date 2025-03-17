@@ -1,3 +1,4 @@
+// frontend/src/components/AdsSection.js
 import React, { useContext } from "react";
 import ExporterAds from "../pages/ExporterAds";
 import ManufacturerAds from "../pages/ManufacturerAds";
