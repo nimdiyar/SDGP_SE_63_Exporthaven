@@ -94,6 +94,37 @@ const Home = () => {
           ))}
         </div>
       </section>
+      
+      {/* How It Works Section */}
+      <section className="how-it-works">
+        <h2>How It Works</h2>
+        <div className="steps-container">
+          {[
+            {
+              number: "01",
+              title: "Create Profile",
+              description:
+                "Set up your business profile with detailed information",
+            },
+            {
+              number: "02",
+              title: "Connect",
+              description: "Find and connect with verified business partners",
+            },
+            {
+              number: "03",
+              title: "Trade",
+              description: "Start trading and growing your business globally",
+            },
+          ].map((step, index) => (
+            <div key={index} className="step-card">
+              <div className="step-number">{step.number}</div>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Testimonials Section */}
       <section className="testimonials">
@@ -132,7 +163,16 @@ const Home = () => {
           ))}
         </div>
       </section>
-
+ {/* CTA Section */}
+ <section className="cta">
+        <div className="cta-content">
+          <h2>Ready to Expand Your Business?</h2>
+          <p>Join thousands of successful businesses on ExportHaven</p>
+          <Link to="/register" className="cta-button">
+            Get Started Now
+          </Link>
+        </div>
+      </section>
       
       </div>
     );
