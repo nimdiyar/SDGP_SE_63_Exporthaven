@@ -52,11 +52,12 @@ const Home = () => {
                 </div>
               </div>
             </div>
-          <div className="hero-image">
-            <img src={images.hero} alt="Global Trade" />
+            <div className="hero-image">
+              <img src={images.hero} alt="Global Trade" />
+            </div>
           </div>
-        </div>
       </section>
+
       {/* Features Section */}
       <section className="features">
         <h2>Why Choose ExportHaven?</h2>
@@ -93,6 +94,46 @@ const Home = () => {
           ))}
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <section className="testimonials">
+        <h2>What Our Users Say</h2>
+        <div className="testimonials-grid">
+          {[
+            {
+              image: images.profile1,
+              name: "Amal Perera",
+              role: "CEO, Lanka Exports",
+              text: "ExportHaven has transformed how we connect with international buyers. Our export volume has grown by 150% since joining.",
+            },
+            {
+              image: images.profile2,
+              name: "Samantha Silva",
+              role: "Director, Spice Trade Co",
+              text: "The platform's market insights feature helps us make data-driven decisions. It's been invaluable for our business growth.",
+            },
+            {
+              image: images.profile3,
+              name: "Rajith Fernando",
+              role: "Founder, Ceylon Craft",
+              text: "Finding reliable manufacturers was a challenge until we discovered ExportHaven. Now we have partners we can trust.",
+            },
+          ].map((testimonial, index) => (
+            <div key={index} className="testimonial-card">
+              <div className="testimonial-header">
+                <img src={testimonial.image} alt={testimonial.name} />
+                <div className="testimonial-info">
+                  <h4>{testimonial.name}</h4>
+                  <p>{testimonial.role}</p>
+                </div>
+              </div>
+              <p className="testimonial-text">{testimonial.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      
       </div>
     );
 
