@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { FaSearch } from "react-icons/fa";
 import "../styles/SearchBar.css";
 import API_BASE_URL from "../utils/apiConfig";
+
 const SearchBar = () => {
     const [query, setQuery] = useState("");
     const [results, setResults] = useState([]);
@@ -29,7 +31,7 @@ const SearchBar = () => {
                     className="search-input"
                 />
                 <button type="submit" className="search-button">
-                    
+                    <FaSearch className="search-icon" />    
                 </button> 
             </form>
 
@@ -45,11 +47,8 @@ const SearchBar = () => {
                     ))}
                 </div>
             )}
-            
         </div>
-
     );
-
 };
 
 export default SearchBar;
