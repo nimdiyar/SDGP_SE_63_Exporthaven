@@ -1,3 +1,4 @@
+// frontend\src\components\ExporterForm.jsx
 import { useState } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
@@ -72,7 +73,7 @@ const ExporterForm = () => {
   return (
     <>
       <form className="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-6 mb-10" onSubmit={handleSubmit}>
-        <h2 className="text-2xl font-bold mb-6 text-center text-[#353535] border-b border-[#d9d9d9] pb-3">
+        <h2 className="text-2xl font-bold mb-6 text-center text-text border-b border-border pb-3">
           EXPORTER REGISTRATION
         </h2>
         <div className="grid md:grid-cols-2 gap-4">

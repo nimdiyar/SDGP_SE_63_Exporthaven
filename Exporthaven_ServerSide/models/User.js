@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+// backend/models/User.js
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
@@ -56,6 +57,24 @@ const userSchema = new mongoose.Schema(
       },
     },
     profilePhoto: { type: String },
+    coverPhoto: { type: String },
+    bio: { type: String },
+    socialMedia: {
+      facebook: String,
+      twitter: String,
+      instagram: String,
+      linkedIn: String,
+      youtube: String,
+    },
+    gallery: [{ type: String }],
+    posts: [
+      {
+        title: String,
+        description: String,
+        image: String,
+        createdAt: { type: Date, default: Date.now },
+      },
+    ],
     exportType: {
       type: String,
       required: function () {
@@ -85,15 +104,6 @@ const userSchema = new mongoose.Schema(
       required: function () {
         return this.role === "manufacturer";
       },
-      validate: {
-        validator: function (v) {
-          if (this.role === "manufacturer") {
-            return v && v.trim().length > 0;
-          }
-          return true;
-        },
-        message: () => "Manufacturer Type is required for manufacturer role.",
-      },
     },
     productionCapacity: {
       type: String,
@@ -106,4 +116,4 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("User", userSchema);
+export default mongoose.model("User", userSchema);

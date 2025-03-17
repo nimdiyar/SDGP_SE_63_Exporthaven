@@ -1,15 +1,26 @@
-const User = require("../models/User");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const crypto = require("crypto");
-const nodemailer = require("nodemailer");
+// controllers/authController.js
+import User from "../models/User.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import crypto from "crypto";
+
+import dotenv from "dotenv";
+dotenv.config();
+
+import nodemailer from "nodemailer";
+
+console.log("GMAIL AUTH:", process.env.EMAIL_USER, process.env.EMAIL_PASS);
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
-  auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+    authMethod: "LOGIN",
+  },
 });
 
-const registerUser = async (req, res) => {
+export const registerUser = async (req, res) => {
   try {
     const {
       name,
@@ -93,7 +104,7 @@ const registerUser = async (req, res) => {
   }
 };
 
-const loginUser = async (req, res) => {
+export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password)
@@ -119,16 +130,18 @@ const loginUser = async (req, res) => {
   }
 };
 
-const forgotPassword = async (req, res) => {
+export const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
     const user = await User.findOne({ email });
     if (!user) return res.status(404).json({ message: "User not found" });
+
     const resetToken = crypto.randomBytes(32).toString("hex");
     user.resetToken = resetToken;
     user.resetTokenExpiry = Date.now() + 3600000;
     await user.save();
-    const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
+
+    const resetUrl = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: user.email,
@@ -137,16 +150,14 @@ const forgotPassword = async (req, res) => {
     });
     res.json({ message: "Password reset link sent to email." });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: "Error processing forgot password",
-        error: error.message,
-      });
+    res.status(500).json({
+      message: "Error processing forgot password",
+      error: error.message,
+    });
   }
 };
 
-const resetPassword = async (req, res) => {
+export const resetPassword = async (req, res) => {
   try {
     const { token } = req.params;
     const { password } = req.body;
@@ -165,5 +176,3 @@ const resetPassword = async (req, res) => {
     res.status(500).json({ message: "Reset failed", error });
   }
 };
-
-module.exports = { registerUser, loginUser, forgotPassword, resetPassword };
