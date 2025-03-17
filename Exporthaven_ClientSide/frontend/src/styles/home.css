@@ -204,3 +204,13 @@
   font-size: 1.25rem;
   margin-bottom: 2rem;
 }
+.cta-button {
+  display: inline-block;
+  background-color: #0077b6;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
