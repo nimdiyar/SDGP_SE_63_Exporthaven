@@ -1,5 +1,14 @@
 import React from "react";
 import "../styles/AboutUs.css";
+import {
+  Building2,
+  Globe2,
+  Users2,
+  LineChart,
+  Code2,
+  Rocket,
+  ArrowRight,
+} from "lucide-react";
 
 function AboutUs() {
   return (
