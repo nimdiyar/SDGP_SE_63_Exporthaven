@@ -1,0 +1,86 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useAuth } from "../context/AuthContext";
+import API_BASE_URL from "../utils/apiConfig";
+import { useNavigate } from "react-router-dom";
+import { MessageSquare } from "lucide-react";
+
+const ChatInbox = () => {
+  const { user } = useAuth();
+  const [chats, setChats] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      const fetchChats = async () => {
+        try {
+          const token = localStorage.getItem("token");
+          const res = await axios.get(`${API_BASE_URL}/api/chat/user/${user._id}`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          setChats(res.data);
+        } catch (error) {
+          console.error("Error fetching chats:", error);
+        }
+      };
+      fetchChats();
+    }
+  }, [user]);
+
+  const handleChatClick = (chat) => {
+    const otherUser = chat.participants.find((p) => p._id !== user._id);
+    if (!otherUser) return;
+    navigate("/chat", {
+      state: { receiverId: otherUser._id, adId: chat.ad || null, adInfo: chat.adInfo || null },
+    });
+  };
+
+  return (
+    <div className="max-w-2xl mx-auto p-5 bg-white rounded-lg shadow-md">
+      <h2 className="text-2xl font-semibold text-gray-700 mb-5 border-b border-gray-200 pb-3">Inbox</h2>
+      {chats.length === 0 ? (
+        <div className="text-center py-10 bg-white/50 rounded-lg">
+          <MessageSquare size={48} className="mx-auto text-teal-600 mb-3 opacity-50" />
+          <p className="text-gray-700">No conversations yet.</p>
+          <p className="text-sm text-gray-700 mt-2">Your messages will appear here</p>
+        </div>
+      ) : (
+        <ul className="divide-y divide-gray-200">
+          {chats.map((chat) => {
+            const otherUser = chat.participants.find((p) => p._id !== user._id);
+            const lastMessage = chat.messages[chat.messages.length - 1];
+            return (
+              <li
+                key={chat._id}
+                className="py-3 px-3 hover:bg-white rounded-md cursor-pointer transition-colors"
+                onClick={() => handleChatClick(chat)}
+              >
+                <div className="flex justify-between items-center mb-1">
+                  <div className="flex items-center">
+                    <div className="w-8 h-8 rounded-full bg-teal-600 text-white flex items-center justify-center mr-2">
+                      {otherUser?.name?.charAt(0) || "U"}
+                    </div>
+                    <span className="font-medium text-gray-700">{otherUser ? otherUser.name : "Unknown"}</span>
+                  </div>
+                  {chat.ad && (
+                    <span className="text-xs bg-teal-600 text-white px-2 py-1 rounded-full">Ad related</span>
+                  )}
+                </div>
+                {lastMessage && (
+                  <div className="flex justify-between items-center ml-10">
+                    <span className="text-sm text-gray-700 truncate max-w-[70%]">{lastMessage.content}</span>
+                    <span className="text-xs text-gray-700">
+                      {new Date(lastMessage.timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                    </span>
+                  </div>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </div>
+  );
+};
+
+export default ChatInbox;
