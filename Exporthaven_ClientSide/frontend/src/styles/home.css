@@ -190,3 +190,7 @@
   background-color: #00246b;
   text-align: center;
 }
+.cta-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
