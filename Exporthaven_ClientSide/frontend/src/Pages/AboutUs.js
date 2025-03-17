@@ -55,6 +55,23 @@ function AboutUs() {
       description: "Dedicated to ensuring client satisfaction and support",
     },
   ];
+  const features = [
+    {
+      icon: <Globe2 className="icon" />,
+      title: "Global Reach",
+      description: "Connect with buyers and markets worldwide",
+    },
+    {
+      icon: <LineChart className="icon" />,
+      title: "Demand Analysis",
+      description: "Real-time product demand insights across countries",
+    },
+    {
+      icon: <Building2 className="icon" />,
+      title: "Local Expertise",
+      description: "Deep understanding of Sri Lankan manufacturing",
+    },
+  ];
   return (
     <div className="min-h-screen">
       <div className="hero-section">
