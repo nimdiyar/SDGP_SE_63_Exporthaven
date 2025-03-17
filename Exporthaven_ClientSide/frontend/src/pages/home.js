@@ -21,7 +21,43 @@ const Home = () => {
       profile3:
         "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
    
-};
-
+    };
+    return(
+      <div className="home-container">
+        {/* Hero Section */}
+        <section className="hero">
+          <div className="hero-content">
+            <div className="hero-text">
+              <h1>
+                Connecting Sri Lankan Manufacturers and Exporters to the Global
+                Market
+              </h1>
+              <p>
+                Your trusted platform for international trade opportunities and
+                business growth
+              </p>
+              <div className="hero-search">{/* <SearchBar /> */}</div>
+              <div className="hero-stats">
+                <div className="stat-item">
+                  <h3>1000+</h3>
+                  <p>Active Exporters</p>
+                </div>
+                <div className="stat-item">
+                  <h3>500+</h3>
+                  <p>Manufacturers</p>
+                </div>
+                <div className="stat-item">
+                  <h3>50+</h3>
+                  <p>Countries</p>
+                </div>
+              </div>
+            </div>
+          <div className="hero-image">
+            <img src={images.hero} alt="Global Trade" />
+          </div>
+        </div>
+      </section>
+      </div>
+    );
 
 export default Home;
