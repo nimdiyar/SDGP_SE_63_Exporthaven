@@ -149,8 +149,23 @@ function AboutUs() {
         </div>
       </div>
 
+      <div className="features-section">
+        <div className="container">
+          <div className="mission-card">
+            <div className="icon-container" style={{ margin: "0 auto 2rem" }}>
+              <Code2 className="section-icon" />
+            </div>
+            <h2 className="section-title">Developed with Excellence</h2>
+            <p className="section-description">
+              Our platform is built by a dedicated team of Sri Lankan developers
+              who combine technical expertise with deep understanding of
+              international trade requirements. Using cutting-edge technology,
+              we deliver a seamless experience for exporters and manufacturers.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-
   );
 }
 
