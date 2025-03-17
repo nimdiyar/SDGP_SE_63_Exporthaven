@@ -57,6 +57,42 @@ const Home = () => {
           </div>
         </div>
       </section>
+      {/* Features Section */}
+      <section className="features">
+        <h2>Why Choose ExportHaven?</h2>
+        <div className="features-grid">
+          {[
+            {
+              icon: "🌐",
+              title: "Global Reach",
+              description:
+                "Connect with buyers and sellers from over 50 countries",
+            },
+            {
+              icon: "📊",
+              title: "Market Insights",
+              description: "Access real-time market data and trend analysis",
+            },
+            {
+              icon: "🤝",
+              title: "Verified Partners",
+              description: "All businesses are verified for secure trading",
+            },
+            {
+              icon: "💡",
+              title: "Smart Matching",
+              description:
+                "AI-powered matching for better business connections",
+            },
+          ].map((feature, index) => (
+            <div key={index} className="feature-card">
+              <span className="feature-icon">{feature.icon}</span>
+              <h3>{feature.title}</h3>
+              <p>{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
       </div>
     );
 
