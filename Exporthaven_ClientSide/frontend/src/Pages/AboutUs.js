@@ -106,9 +106,21 @@ function AboutUs() {
               </div>
             ))}
           </div> 
+
+          <div className="mission-card">
+            <div className="icon-container" style={{ margin: "0 auto 2rem" }}>
+              <Rocket className="section-icon" />
+            </div>
+            <h2 className="section-title">Our Mission</h2>
+            <p className="section-description">
+              To empower Sri Lankan businesses by providing comprehensive market
+              insights and connecting them with global opportunities, fostering
+              economic growth through digital innovation.
+            </p>
+          </div>
         </div>
       </div>
-          
+
     </div>
 
   );
