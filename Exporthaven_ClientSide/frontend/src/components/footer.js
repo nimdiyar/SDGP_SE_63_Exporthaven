@@ -15,6 +15,13 @@ const Footer = () => {
     return (
         <footer className="footer">
             <div className="footer-content">
+                <div className="footer-section company-info">
+                    <h2 className="footer-logo">ExportHaven</h2>
+                        <p className="company-description">
+                            Connecting manufacturers and exporters worldwide. Your trusted
+                            platform for global trade opportunities.
+                        </p>
+                </div>
 
             </div>
             <div className="footer-bottom">
