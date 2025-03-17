@@ -219,7 +219,7 @@ const ExporterForm = () => {
             />
           </div>
         </div>
-        <button className="w-full bg-[#3c6e71] text-white py-3 px-4 rounded-md mt-6" type="submit">
+        <button className="w-full bg-primary text-white py-3 px-4 rounded-md mt-6 hover:bg-secondary" type="submit">
           Register
         </button>
       </form>
