@@ -1,7 +1,7 @@
-// routes/categoryRoutes.js
-const express = require("express");
-const Category = require("../models/Category");
-const { protect, adminProtect } = require("../middleware/authMiddleware");
+// backend/routes/categoryRoutes.js
+import express from "express";
+import Category from "../models/Category.js";
+import { protect, adminProtect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -30,4 +30,4 @@ router.post("/", protect, adminProtect, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
