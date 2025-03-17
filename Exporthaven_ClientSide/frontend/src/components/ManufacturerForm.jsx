@@ -71,32 +71,32 @@ const ManufacturerForm = () => {
         </h2>
         <div className="grid md:grid-cols-2 gap-4">
           <div className="mb-4">
-            <label className="flex items-center text-[#353535] mb-1 font-medium">
-              <FaBuilding className="mr-2 text-[#3c6e71]" /> Company Name
+            <label className="flex items-center text-text mb-1 font-medium">
+              <FaBuilding className="mr-2 text-primary" /> Company Name
             </label>
             <input
               name="companyName"
               value={formData.companyName}
               onChange={handleChange}
               placeholder="Enter company name"
-              className="w-full px-3 py-2 border border-[#d9d9d9] rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           <div className="mb-4">
-            <label className="flex items-center text-[#353535] mb-1 font-medium">
-              <FaUser className="mr-2 text-[#3c6e71]" /> Contact Person
+            <label className="flex items-center text-text mb-1 font-medium">
+              <FaUser className="mr-2 text-primary" /> Contact Person
             </label>
             <input
               name="contactPerson"
               value={formData.contactPerson}
               onChange={handleChange}
               placeholder="Enter contact person"
-              className="w-full px-3 py-2 border border-[#d9d9d9] rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           <div className="mb-4">
-            <label className="flex items-center text-[#353535] mb-1 font-medium">
-              <FaEnvelope className="mr-2 text-[#3c6e71]" /> Email
+            <label className="flex items-center text-text mb-1 font-medium">
+              <FaEnvelope className="mr-2 text-primary" /> Email
             </label>
             <input
               name="email"
@@ -104,12 +104,12 @@ const ManufacturerForm = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder="Enter email"
-              className="w-full px-3 py-2 border border-[#d9d9d9] rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           <div className="mb-4">
-            <label className="flex items-center text-[#353535] mb-1 font-medium">
-              <FaLock className="mr-2 text-[#3c6e71]" /> Password
+            <label className="flex items-center text-text mb-1 font-medium">
+              <FaLock className="mr-2 text-primary" /> Password
             </label>
             <input
               name="password"
@@ -117,90 +117,90 @@ const ManufacturerForm = () => {
               value={formData.password}
               onChange={handleChange}
               placeholder="Enter password"
-              className="w-full px-3 py-2 border border-[#d9d9d9] rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           <div className="mb-4">
-            <label className="flex items-center text-[#353535] mb-1 font-medium">
-              <FaPhone className="mr-2 text-[#3c6e71]" /> Phone
+            <label className="flex items-center text-text mb-1 font-medium">
+              <FaPhone className="mr-2 text-primary" /> Phone
             </label>
             <input
               name="phone"
               value={formData.phone}
               onChange={handleChange}
               placeholder="Enter phone"
-              className="w-full px-3 py-2 border border-[#d9d9d9] rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           <div className="mb-4">
-            <label className="flex items-center text-[#353535] mb-1 font-medium">
-              <FaGlobe className="mr-2 text-[#3c6e71]" /> Website
+            <label className="flex items-center text-text mb-1 font-medium">
+              <FaGlobe className="mr-2 text-primary" /> Website
             </label>
             <input
               name="website"
               value={formData.website}
               onChange={handleChange}
               placeholder="Enter website"
-              className="w-full px-3 py-2 border border-[#d9d9d9] rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
         </div>
-        <h3 className="text-xl font-semibold mt-6 mb-4 text-[#353535] border-b border-[#d9d9d9] pb-2">
+        <h3 className="text-xl font-semibold mt-6 mb-4 text-text border-b border-border pb-2">
           Business Address
         </h3>
         <div className="grid md:grid-cols-2 gap-4">
           <div className="mb-4">
-            <label className="flex items-center text-[#353535] mb-1 font-medium">
-              <FaMapMarkerAlt className="mr-2 text-[#3c6e71]" /> Street
+            <label className="flex items-center text-text mb-1 font-medium">
+              <FaMapMarkerAlt className="mr-2 text-primary" /> Street
             </label>
             <input
               name="street"
               value={formData.businessAddress.street}
               onChange={handleChange}
               placeholder="Enter street"
-              className="w-full px-3 py-2 border border-[#d9d9d9] rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           <div className="mb-4">
-            <label className="flex items-center text-[#353535] mb-1 font-medium">
-              <FaMapMarkerAlt className="mr-2 text-[#3c6e71]" /> City
+            <label className="flex items-center text-text mb-1 font-medium">
+              <FaMapMarkerAlt className="mr-2 text-primary" /> City
             </label>
             <input
               name="city"
               value={formData.businessAddress.city}
               onChange={handleChange}
               placeholder="Enter city"
-              className="w-full px-3 py-2 border border-[#d9d9d9] rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
         </div>
         <div className="grid md:grid-cols-2 gap-4">
           <div className="mb-4">
-            <label className="flex items-center text-[#353535] mb-1 font-medium">
-              <FaCogs className="mr-2 text-[#3c6e71]" /> Manufacturer Type
+            <label className="flex items-center text-text mb-1 font-medium">
+              <FaCogs className="mr-2 text-primary" /> Manufacturer Type
             </label>
             <input
               name="manufacturerType"
               value={formData.manufacturerType}
               onChange={handleChange}
               placeholder="Enter manufacturer type"
-              className="w-full px-3 py-2 border border-[#d9d9d9] rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           <div className="mb-4">
-            <label className="flex items-center text-[#353535] mb-1 font-medium">
-              <FaCertificate className="mr-2 text-[#3c6e71]" /> Certifications
+            <label className="flex items-center text-text mb-1 font-medium">
+              <FaCertificate className="mr-2 text-primary" /> Certifications
             </label>
             <input
               name="certifications"
               value={formData.certifications}
               onChange={handleChange}
               placeholder="Enter certifications"
-              className="w-full px-3 py-2 border border-[#d9d9d9] rounded-md"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
         </div>
-        <button className="w-full bg-[#3c6e71] text-white py-3 px-4 rounded-md mt-6" type="submit">
+        <button className="w-full bg-primary text-white py-3 px-4 rounded-md mt-6 hover:bg-secondary" type="submit">
           Register
         </button>
       </form>
