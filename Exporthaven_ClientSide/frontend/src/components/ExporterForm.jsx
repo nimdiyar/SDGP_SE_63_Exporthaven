@@ -1,4 +1,3 @@
-// frontend\src\components\ExporterForm.jsx
 import { useState } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
@@ -86,7 +85,7 @@ const ExporterForm = () => {
               value={formData.companyName}
               onChange={handleChange}
               placeholder="Enter company name"
-              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary transition duration-200"
             />
           </div>
           <div className="mb-4">
@@ -98,7 +97,7 @@ const ExporterForm = () => {
               value={formData.contactPerson}
               onChange={handleChange}
               placeholder="Enter contact person"
-              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary transition duration-200"
             />
           </div>
           <div className="mb-4">
@@ -111,7 +110,7 @@ const ExporterForm = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder="Enter email"
-              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary transition duration-200"
             />
           </div>
           <div className="mb-4">
@@ -124,7 +123,7 @@ const ExporterForm = () => {
               value={formData.password}
               onChange={handleChange}
               placeholder="Enter password"
-              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary transition duration-200"
             />
           </div>
           <div className="mb-4">
@@ -136,7 +135,7 @@ const ExporterForm = () => {
               value={formData.phone}
               onChange={handleChange}
               placeholder="Enter phone"
-              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary transition duration-200"
             />
           </div>
           <div className="mb-4">
@@ -148,7 +147,7 @@ const ExporterForm = () => {
               value={formData.website}
               onChange={handleChange}
               placeholder="Enter website"
-              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary transition duration-200"
             />
           </div>
         </div>
@@ -165,7 +164,7 @@ const ExporterForm = () => {
               value={formData.businessAddress.street}
               onChange={handleChange}
               placeholder="Enter street"
-              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary transition duration-200"
             />
           </div>
           <div className="mb-4">
@@ -177,7 +176,7 @@ const ExporterForm = () => {
               value={formData.businessAddress.city}
               onChange={handleChange}
               placeholder="Enter city"
-              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary transition duration-200"
             />
           </div>
         </div>
@@ -191,7 +190,7 @@ const ExporterForm = () => {
               value={formData.exportType}
               onChange={handleChange}
               placeholder="Enter export type"
-              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary transition duration-200"
             />
           </div>
           <div className="mb-4">
@@ -203,7 +202,7 @@ const ExporterForm = () => {
               value={formData.certifications}
               onChange={handleChange}
               placeholder="Enter certifications"
-              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary transition duration-200"
             />
           </div>
           <div className="mb-4">
@@ -215,11 +214,11 @@ const ExporterForm = () => {
               value={formData.shippingMethods}
               onChange={handleChange}
               placeholder="Enter shipping methods"
-              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary transition duration-200"
             />
           </div>
         </div>
-        <button className="w-full bg-primary text-white py-3 px-4 rounded-md mt-6 hover:bg-secondary" type="submit">
+        <button className="w-full bg-primary text-white py-3 px-4 rounded-md mt-6 hover:bg-secondary transition duration-200" type="submit">
           Register
         </button>
       </form>
