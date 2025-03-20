@@ -1,10 +1,12 @@
-const express = require("express");
-const {
+// backend/routes/authRoutes.js
+import express from "express";
+import {
   registerUser,
   loginUser,
   forgotPassword,
   resetPassword,
-} = require("../controllers/authController");
+} from "../controllers/authController.js";
+
 const router = express.Router();
 
 router.post("/register", registerUser);
@@ -12,4 +14,4 @@ router.post("/login", loginUser);
 router.post("/forgot-password", forgotPassword);
 router.post("/reset-password/:token", resetPassword);
 
-module.exports = router;
+export default router;
