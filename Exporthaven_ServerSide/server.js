@@ -1,64 +1,66 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const corsMiddleware = require("./config/cors");
-const connectDB = require("./config/db");
-const path = require("path");
-const http = require("http");
-const i18next = require("i18next");
-const Backend = require("i18next-http-middleware");
-const translationEN = require("./locales/en.json");
-const translationSI = require("./locales/si.json");
-
-// Routes
-const authRoutes = require("./routes/authRoutes");
-const userRoutes = require("./routes/userRoutes");
-const adRoutes = require("./routes/adRoutes");
-const orderRoutes = require("./routes/orderRoutes");
-const chatRoutes = require("./routes/chatRoutes");
-const adminRoutes = require("./routes/adminRoutes");
-// Removed dashboardRoutes
-const categoryRoutes = require("./routes/categoryRoutes");
-const notificationRoutes = require("./routes/notificationRoutes");
-const reviewRoutes = require("./routes/reviewRoutes");
-
-// Socket
-const chatSocket = require("./sockets/chatSocket");
-
-// Error middleware
-const errorMiddleware = require("./middleware/errorMiddleware");
-
+import dotenv from "dotenv";
 dotenv.config();
-connectDB();
+
+import express from "express";
+import corsMiddleware from "./config/cors.js";
+import connectDB from "./config/db.js";
+import path from "path";
+import http from "http";
+import mongoose from "mongoose";
+
+// Import Routes
+import authRoutes from "./routes/authRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import adRoutes from "./routes/adRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
+import chatRoutes from "./routes/chatRoutes.js";
+import adminRoutes from "./routes/adminRoutes.js";
+import categoryRoutes from "./routes/categoryRoutes.js";
+import notificationRoutes from "./routes/notificationRoutes.js";
+import reviewRoutes from "./routes/reviewRoutes.js";
+import contactRoutes from "./routes/contactRoutes.js";
+import profileRoutes from "./routes/profileRoutes.js";
+
+// Import Other Modules
+import setupChatSocket from "./sockets/chatSocket.js";
+import errorMiddleware from "./middleware/errorMiddleware.js";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+// Connect to MongoDB
+const MONGO_URI = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_CLUSTER}/?retryWrites=true&w=majority`;
+
+mongoose
+  .connect(MONGO_URI)
+  .then(() => console.log("✅ MongoDB Connected Successfully"))
+  .catch((err) => console.error("❌ MongoDB Connection Error:", err));
 
 const app = express();
 const server = http.createServer(app);
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Middleware
 app.use(corsMiddleware);
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-i18next.use(Backend.LanguageDetector).init({
-  resources: {
-    en: { translation: translationEN },
-    si: { translation: translationSI },
-  },
-  fallbackLng: "en",
-  detection: { order: ["querystring", "cookie"] },
-});
-app.use(Backend.handle(i18next));
-
+// API Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/ads", adRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/admin", adminRoutes);
-// Removed dashboardRoutes mounting.
 app.use("/api/categories", categoryRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/reviews", reviewRoutes);
+app.use("/api/contact", contactRoutes);
+app.use("/api/profile", profileRoutes);
 
-const Ad = require("./models/Ad");
+// Search API
+import Ad from "./models/Ad.js";
 app.get("/api/search", async (req, res) => {
   try {
     const query = req.query.query;
@@ -70,12 +72,14 @@ app.get("/api/search", async (req, res) => {
   }
 });
 
+// Error Handling Middleware
 app.use(errorMiddleware);
 
-// Initialize Socket.IO for chat/notifications
-chatSocket(server);
+// Setup Chat Socket
+setupChatSocket(server);
 
+// Start Server
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
-  console.log(` Server running on port ${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });
