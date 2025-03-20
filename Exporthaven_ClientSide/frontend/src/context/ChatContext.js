@@ -9,7 +9,6 @@ export const ChatProvider = ({ children }) => {
 
   useEffect(() => {
     const newSocket = io("http://localhost:5000", {
-      transports: ["websocket"],
       reconnectionAttempts: 5,
       reconnectionDelay: 1000,
     });
@@ -18,17 +17,20 @@ export const ChatProvider = ({ children }) => {
       console.log("Socket connected:", newSocket.id);
     });
 
+    newSocket.on("connect_error", (error) => {
+      console.error("Socket connection error:", error);
+    });
+
     newSocket.on("receiveMessage", (messageData) => {
-      // Transform payload to use "content" property
-      const transformed = { ...messageData, content: messageData.message };
-      setMessages((prev) => [...prev, transformed]);
+      console.log("Received message:", messageData);
+      setMessages((prev) => [...prev, messageData]);
     });
 
     setSocket(newSocket);
+
     return () => newSocket.disconnect();
   }, []);
 
-  // sendMessage sends the message using key "message"
   const sendMessage = (receiverId, content, adId, type = "text") => {
     if (socket) {
       const currentUser = localStorage.getItem("user")
@@ -36,18 +38,21 @@ export const ChatProvider = ({ children }) => {
         : null;
       if (!currentUser) return;
       const messageData = {
-        senderId: currentUser._id,
+        senderId: currentUser._id, // Changed from "sender" to "senderId"
         receiverId,
-        message: content,
+        content,
         type,
         adId,
       };
       socket.emit("sendMessage", messageData);
+      console.log("Sent message:", messageData);
     }
   };
 
   return (
-    <ChatContext.Provider value={{ messages, setMessages, sendMessage, socket }}>
+    <ChatContext.Provider
+      value={{ messages, setMessages, sendMessage, socket }}
+    >
       {children}
     </ChatContext.Provider>
   );

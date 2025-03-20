@@ -1,3 +1,4 @@
+//frontend\src\hooks\useChat.js
 import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 
@@ -8,9 +9,11 @@ const useChat = (userId) => {
 
   useEffect(() => {
     if (!userId) return;
+
     socket.on("receiveMessage", (message) => {
       setMessages((prev) => [...prev, message]);
     });
+
     return () => {
       socket.off("receiveMessage");
       socket.disconnect();

@@ -70,4 +70,3 @@ const setupChatSocket = (server) => {
 };
 
 export default setupChatSocket;
-
