@@ -7,7 +7,7 @@ const AdsGrid = ({ ads }) => {
       {ads.length > 0 ? (
         ads.map((ad) => (
           <Link key={ad._id} to={`/ad/${ad._id}`} className="group block">
-            <div className="h-full bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+            <div className="h-full bg-[#ffffff] border border-[#d9d9d9] rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
               <div className="h-52 overflow-hidden">
                 <img
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -21,27 +21,34 @@ const AdsGrid = ({ ads }) => {
               </div>
               <div className="p-5">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="px-3 py-1 bg-teal-600 text-white text-xs font-medium rounded-full">
+                  <span className="px-3 py-1 bg-[#3c6e71] text-[#ffffff] text-xs font-medium rounded-full">
                     {ad.category}
                   </span>
                 </div>
-                <h3 className="text-xl font-semibold text-blue-800 mb-2 line-clamp-1">
+                <h3 className="text-xl font-semibold text-[#284b63] mb-2 line-clamp-1">
                   {ad.title}
                 </h3>
-                <p className="text-gray-700 mb-4 line-clamp-2">
+                <p className="text-[#353535] mb-4 line-clamp-2">
                   {ad.description}
                 </p>
                 <div className="flex justify-between items-center mb-3">
-                  <span className="font-semibold text-base text-gray-700">
+                  <span
+                    className="font-semibold
+                   text-base text-[#353535]"
+                  >
                     {ad.minPrice || ad.maxPrice
-                      ? `${ad.minPrice ? `$${ad.minPrice.toLocaleString()}` : ""}${ad.minPrice && ad.maxPrice ? " - " : ""}${ad.maxPrice ? `$${ad.maxPrice.toLocaleString()}` : ""} ${ad.unit || ""}`
+                      ? `${
+                          ad.minPrice ? `$${ad.minPrice.toLocaleString()}` : ""
+                        }${ad.minPrice && ad.maxPrice ? " - " : ""}${
+                          ad.maxPrice ? `$${ad.maxPrice.toLocaleString()}` : ""
+                        } ${ad.unit || ""}`
                       : "Price not specified"}
                   </span>
-                  <span className="px-3 py-1 bg-blue-800 text-white text-xs font-medium rounded-full">
+                  <span className="px-3 py-1 bg-[#284b63] text-[#ffffff] text-xs font-medium rounded-full">
                     {ad.status.toUpperCase()}
                   </span>
                 </div>
-                <div className="flex items-center text-sm text-gray-700">
+                <div className="flex items-center text-sm text-[#353535]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-4 w-4 mr-1"
@@ -69,8 +76,9 @@ const AdsGrid = ({ ads }) => {
           </Link>
         ))
       ) : (
-        <div className="col-span-full text-center py-10 text-gray-700">
-          No ads found. Try adjusting your filters or be the first to post in this category!
+        <div className="col-span-full text-center py-10 text-[#353535]">
+          No ads found. Try adjusting your filters or be the first to post in
+          this category!
         </div>
       )}
     </div>

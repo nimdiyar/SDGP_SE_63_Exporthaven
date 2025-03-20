@@ -24,7 +24,7 @@ const categories = [
   "other",
 ];
 
-const ExporterAds = () => {
+const ManufacturerAds = () => {
   const [ads, setAds] = useState([]);
   const [filters, setFilters] = useState({ category: "", location: "" });
   const [sortBy, setSortBy] = useState("newest");
@@ -50,7 +50,7 @@ const ExporterAds = () => {
   const fetchAds = async () => {
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/api/ads/exporters?category=${filters.category}&location=${filters.location}&sort=${sortBy}`
+        `${API_BASE_URL}/api/ads/manufacturers?category=${filters.category}&location=${filters.location}&sort=${sortBy}`
       );
       setAds(response.data);
     } catch (error) {
@@ -131,8 +131,8 @@ const ExporterAds = () => {
     <div className="min-h-screen bg-[#ffffff] text-[#353535]">
       <div className="container mx-auto px-4 py-8">
         <HeroSection
-          title="Exporter Advertisements"
-          subtitle="Connect with global buyers and showcase your products"
+          title="Manufacturer Marketplace"
+          subtitle="Connect with Sri Lankan manufacturers and explore export opportunities"
         />
         <div className="mb-6">
           <SearchBar />
@@ -146,7 +146,7 @@ const ExporterAds = () => {
               sortBy={sortBy}
               setSortBy={setSortBy}
             />
-            {user && user.role === "exporter" && (
+            {user && user.role === "manufacturer" && (
               <button
                 className="w-full md:w-auto px-6 py-3 bg-[#284b63] text-[#ffffff] font-medium rounded-md hover:bg-[#3c6e71] transition-colors shadow-sm"
                 onClick={() => setShowModal(true)}
@@ -173,4 +173,4 @@ const ExporterAds = () => {
   );
 };
 
-export default ExporterAds;
+export default ManufacturerAds;

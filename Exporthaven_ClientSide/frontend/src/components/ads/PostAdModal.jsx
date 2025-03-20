@@ -25,23 +25,27 @@ const PostAdModal = ({
   if (!showModal) return null;
 
   return (
-    <div className="fixed inset-0 bg-gray-700 bg-opacity-50 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative">
-        <div className="sticky top-0 bg-blue-800 p-6 rounded-t-2xl flex justify-between items-center">
-          <h2 className="text-2xl font-semibold text-white">
+    <div className="fixed inset-0 bg-[#353535] bg-opacity-50 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
+      <div className="bg-[#ffffff] rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative">
+        {/* Header */}
+        <div className="sticky top-0 bg-[#284b63] p-6 rounded-t-2xl flex justify-between items-center">
+          <h2 className="text-2xl font-semibold text-[#ffffff]">
             Create New Listing
           </h2>
           <button
             onClick={() => setShowModal(false)}
-            className="text-white hover:bg-teal-600 p-2 rounded-full transition-all"
+            className="text-[#ffffff] hover:bg-[#3c6e71] p-2 rounded-full transition-all"
           >
             <X size={24} />
           </button>
         </div>
+
+        {/* Form */}
         <div className="p-6">
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Title Section */}
             <div className="space-y-2">
-              <div className="flex items-center gap-2 text-blue-800">
+              <div className="flex items-center gap-2 text-[#284b63]">
                 <FileText size={20} />
                 <label className="text-sm font-semibold">Title</label>
               </div>
@@ -51,14 +55,16 @@ const PostAdModal = ({
                 value={formData.title}
                 onChange={handleChange}
                 placeholder="What are you selling?"
-                className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-800 text-gray-700 placeholder-gray-300"
+                className="w-full px-4 py-3 bg-[#ffffff] border border-[#d9d9d9] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#284b63] text-[#353535] placeholder-[#d9d9d9]"
               />
               {errors.title && (
                 <p className="text-red-500 text-sm">{errors.title}</p>
               )}
             </div>
+
+            {/* Description Section */}
             <div className="space-y-2">
-              <div className="flex items-center gap-2 text-blue-800">
+              <div className="flex items-center gap-2 text-[#284b63]">
                 <Tag size={20} />
                 <label className="text-sm font-semibold">Description</label>
               </div>
@@ -68,15 +74,17 @@ const PostAdModal = ({
                 onChange={handleChange}
                 placeholder="Describe your item in detail..."
                 rows="4"
-                className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-800 text-gray-700 placeholder-gray-300"
+                className="w-full px-4 py-3 bg-[#ffffff] border border-[#d9d9d9] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#284b63] text-[#353535] placeholder-[#d9d9d9]"
               />
               {errors.description && (
                 <p className="text-red-500 text-sm">{errors.description}</p>
               )}
             </div>
+
+            {/* Category & Location */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <div className="flex items-center gap-2 text-blue-800">
+                <div className="flex items-center gap-2 text-[#284b63]">
                   <Tag size={20} />
                   <label className="text-sm font-semibold">Category</label>
                 </div>
@@ -92,8 +100,9 @@ const PostAdModal = ({
                   <p className="text-red-500 text-sm">{errors.category}</p>
                 )}
               </div>
+
               <div className="space-y-2">
-                <div className="flex items-center gap-2 text-blue-800">
+                <div className="flex items-center gap-2 text-[#284b63]">
                   <MapPin size={20} />
                   <label className="text-sm font-semibold">Location</label>
                 </div>
@@ -109,15 +118,21 @@ const PostAdModal = ({
                 )}
               </div>
             </div>
+
+            {/* Price Range & Certifications */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <div className="flex items-center gap-2 text-blue-800">
+                <div className="flex items-center gap-2 text-[#284b63]">
                   <DollarSign size={20} />
-                  <label className="text-sm font-semibold">Price Range (USD)</label>
+                  <label className="text-sm font-semibold">
+                    Price Range (USD)
+                  </label>
                 </div>
                 <div className="flex gap-4">
                   <div className="relative flex-1">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-700">$</span>
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#353535]">
+                      $
+                    </span>
                     <input
                       type="number"
                       name="minPrice"
@@ -126,11 +141,13 @@ const PostAdModal = ({
                       min="0"
                       step="0.01"
                       placeholder="From"
-                      className="w-full pl-8 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-800 text-gray-700 placeholder-gray-300"
+                      className="w-full pl-8 pr-4 py-3 bg-[#ffffff] border border-[#d9d9d9] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#284b63] text-[#353535] placeholder-[#d9d9d9]"
                     />
                   </div>
                   <div className="relative flex-1">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-700">$</span>
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#353535]">
+                      $
+                    </span>
                     <input
                       type="number"
                       name="maxPrice"
@@ -139,7 +156,7 @@ const PostAdModal = ({
                       min="0"
                       step="0.01"
                       placeholder="To"
-                      className="w-full pl-8 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-800 text-gray-700 placeholder-gray-300"
+                      className="w-full pl-8 pr-4 py-3 bg-[#ffffff] border border-[#d9d9d9] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#284b63] text-[#353535] placeholder-[#d9d9d9]"
                     />
                   </div>
                 </div>
@@ -149,13 +166,16 @@ const PostAdModal = ({
                   value={formData.unit}
                   onChange={handleChange}
                   placeholder="Unit (e.g., per meter, each)"
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-800 text-gray-700 placeholder-gray-300"
+                  className="w-full px-4 py-3 bg-[#ffffff] border border-[#d9d9d9] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#284b63] text-[#353535] placeholder-[#d9d9d9]"
                 />
               </div>
+
               <div className="space-y-2">
-                <div className="flex items-center gap-2 text-blue-800">
+                <div className="flex items-center gap-2 text-[#284b63]">
                   <Award size={20} />
-                  <label className="text-sm font-semibold">Certifications</label>
+                  <label className="text-sm font-semibold">
+                    Certifications
+                  </label>
                 </div>
                 <input
                   type="text"
@@ -163,12 +183,14 @@ const PostAdModal = ({
                   value={formData.certifications}
                   onChange={handleChange}
                   placeholder="e.g., Organic, Fair Trade"
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-800 text-gray-700 placeholder-gray-300"
+                  className="w-full px-4 py-3 bg-[#ffffff] border border-[#d9d9d9] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#284b63] text-[#353535] placeholder-[#d9d9d9]"
                 />
               </div>
             </div>
+
+            {/* Images Section */}
             <div className="space-y-2">
-              <div className="flex items-center gap-2 text-blue-800">
+              <div className="flex items-center gap-2 text-[#284b63]">
                 <ImagePlus size={20} />
                 <label className="text-sm font-semibold">Images</label>
               </div>
@@ -177,17 +199,19 @@ const PostAdModal = ({
                 <p className="text-red-500 text-sm">{errors.images}</p>
               )}
             </div>
+
+            {/* Action Buttons */}
             <div className="flex gap-4 pt-6">
               <button
                 type="submit"
-                className="flex-1 px-6 py-3.5 bg-blue-800 text-white font-semibold rounded-xl hover:bg-teal-600 transition-all duration-200 transform hover:scale-105 active:scale-95"
+                className="flex-1 px-6 py-3.5 bg-[#284b63] text-[#ffffff] font-semibold rounded-xl hover:bg-[#3c6e71] transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]"
               >
                 Post Listing
               </button>
               <button
                 type="button"
                 onClick={() => setShowModal(false)}
-                className="flex-1 px-6 py-3.5 border-2 border-gray-200 text-blue-800 font-semibold rounded-xl hover:bg-gray-200 transition-all duration-200 transform hover:scale-105 active:scale-95"
+                className="flex-1 px-6 py-3.5 border-2 border-[#d9d9d9] text-[#284b63] font-semibold rounded-xl hover:bg-[#d9d9d9] transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]"
               >
                 Cancel
               </button>
