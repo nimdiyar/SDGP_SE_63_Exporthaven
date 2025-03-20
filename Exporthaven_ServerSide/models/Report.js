@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+// backend/models/Report.js
+import mongoose from "mongoose";
 
 const ReportSchema = new mongoose.Schema(
   {
@@ -14,4 +15,4 @@ const ReportSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Report", ReportSchema);
+export default mongoose.model("Report", ReportSchema);

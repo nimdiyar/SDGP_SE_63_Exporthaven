@@ -1,8 +1,9 @@
-const User = require("../models/User");
-const Ad = require("../models/Ad");
-const Order = require("../models/Order");
+//controllers/adminController.js
+import User from "../models/User.js";
+import Ad from "../models/Ad.js";
+import Order from "../models/Order.js";
 
-const getAdminDashboardStats = async (req, res) => {
+export const getAdminDashboardStats = async (req, res) => {
   try {
     const totalUsers = await User.countDocuments();
     const totalAds = await Ad.countDocuments();
@@ -15,7 +16,7 @@ const getAdminDashboardStats = async (req, res) => {
   }
 };
 
-const getAllUsers = async (req, res) => {
+export const getAllUsers = async (req, res) => {
   try {
     const users = await User.find().select("-password");
     res.json(users);
@@ -24,7 +25,7 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-const deleteUser = async (req, res) => {
+export const deleteUser = async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.id);
     res.json({ message: "User deleted successfully" });
@@ -33,7 +34,7 @@ const deleteUser = async (req, res) => {
   }
 };
 
-const getAllAds = async (req, res) => {
+export const getAllAds = async (req, res) => {
   try {
     const ads = await Ad.find({}).populate("user", "companyName name role");
     res.json(ads);
@@ -44,7 +45,7 @@ const getAllAds = async (req, res) => {
   }
 };
 
-const approveAd = async (req, res) => {
+export const approveAd = async (req, res) => {
   try {
     const ad = await Ad.findById(req.params.id);
     if (!ad) return res.status(404).json({ message: "Ad not found" });
@@ -60,7 +61,7 @@ const approveAd = async (req, res) => {
   }
 };
 
-const rejectAd = async (req, res) => {
+export const rejectAd = async (req, res) => {
   try {
     const ad = await Ad.findById(req.params.id);
     if (!ad) return res.status(404).json({ message: "Ad not found" });
@@ -72,7 +73,7 @@ const rejectAd = async (req, res) => {
   }
 };
 
-const deleteAdAdmin = async (req, res) => {
+export const deleteAdAdmin = async (req, res) => {
   try {
     await Order.deleteMany({ ad: req.params.id });
     const deletedAd = await Ad.findByIdAndDelete(req.params.id);
@@ -85,7 +86,7 @@ const deleteAdAdmin = async (req, res) => {
   }
 };
 
-const getAllOrders = async (req, res) => {
+export const getAllOrders = async (req, res) => {
   try {
     const orders = await Order.find().populate("ad");
     res.json(orders);
@@ -94,7 +95,7 @@ const getAllOrders = async (req, res) => {
   }
 };
 
-const updateOrderStatus = async (req, res) => {
+export const updateOrderStatus = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);
     if (!order) return res.status(404).json({ message: "Order not found" });
@@ -104,16 +105,4 @@ const updateOrderStatus = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Error updating order status", error });
   }
-};
-
-module.exports = {
-  getAdminDashboardStats,
-  getAllUsers,
-  deleteUser,
-  getAllAds,
-  approveAd,
-  rejectAd,
-  deleteAdAdmin,
-  getAllOrders,
-  updateOrderStatus,
 };
