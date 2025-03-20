@@ -26,7 +26,3 @@ export default {
     },
     plugins: [],
   };
-<<<<<<< HEAD
-=======
-  
->>>>>>> chat-feature
