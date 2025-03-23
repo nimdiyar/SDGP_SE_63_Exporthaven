@@ -24,7 +24,7 @@ const teamMembers = [
   },
   {
     name: "Savindu Rajapaksha",
-    role: "Project Manager & Web Solutions Expert",
+    role: "Project Manager & Mobile Solutions Expert",
     image: savinduImage,
     description:
       "Savindu coordinates project efforts with precision and leverages cutting-edge mobile technologies to deliver streamlined digital experiences that empower Sri Lankan manufacturers and exporters.",
@@ -41,7 +41,7 @@ const teamMembers = [
     role: "UI/UX Designer & Front-End Developer",
     image: nadunImage,
     description:
-      "Nadun crafts intuitive and user-friendly interfaces tailored for Sri Lankan manufacturers and exporters simplifying complex trade processes and enhancing user engagement.",
+      "Nadun crafts intuitive and user-friendly interfaces tailored for Sri Lankan manufacturers and exporters, simplifying complex trade processes and enhancing user engagement.",
   },
   {
     name: "Yoshen Tharinda",
