@@ -1,24 +1,18 @@
-const express = require("express");
-const { protect } = require("../middleware/authMiddleware");
-const {
+// backend/routes/orderRoutes.js
+import express from "express";
+import { protect } from "../middleware/authMiddleware.js";
+import {
   requestOrder,
   updateOrderStatus,
   getManufacturerOrders,
   getExporterOrders,
-} = require("../controllers/orderController");
+} from "../controllers/orderController.js";
 
 const router = express.Router();
 
-// Manufacturer requests an order
 router.post("/", protect, requestOrder);
-
-// Exporter updates order status
 router.put("/:orderId", protect, updateOrderStatus);
-
-// Get orders for a manufacturer
 router.get("/manufacturer", protect, getManufacturerOrders);
-
-// Get orders for an exporter
 router.get("/exporter", protect, getExporterOrders);
 
-module.exports = router;
+export default router;
