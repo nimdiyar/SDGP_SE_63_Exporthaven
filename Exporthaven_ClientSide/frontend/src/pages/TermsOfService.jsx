@@ -10,7 +10,7 @@ const TermsOfService = () => {
         </div>
         <div className="p-8">
           <p className="text-lg text-[#353535] mb-8">
-            By using our platform, you agree to the following terms and
+            By using our platform, You agree to the following terms and
             conditions.
           </p>
           <section className="mb-10">
