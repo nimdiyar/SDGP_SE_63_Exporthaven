@@ -1,20 +1,21 @@
-// src/components/LocationDropdown.js
 import React from "react";
 import PropTypes from "prop-types";
-import "../styles/LocationDropdown.css";
 
 const LocationDropdown = ({
-    value,
-    onChange,
-    placeholder = "Select location",
-  }) => {
-    return( 
-         <select value={value}
-    onChange={(e) => onChange(e.target.value)}
-    className="location-dropdown"
->
-        <option value="">{placeholder}</option>
-        <option value="Kandy">Kandy</option>
+  value,
+  onChange,
+  placeholder = "Select location",
+}) => {
+  return (
+    <select
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      className="w-full px-4 py-2 bg-white border border-[#d9d9d9] rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#3c6e71] focus:border-transparent text-[#353535] appearance-none cursor-pointer hover:border-[#3c6e71] transition-colors"
+    >
+      <option value="" className="text-[#353535]">
+        {placeholder}
+      </option>
+      <option value="Kandy">Kandy</option>
       <option value="Matale">Matale</option>
       <option value="Nuwara Eliya">Nuwara Eliya</option>
       <option value="Ampara">Ampara</option>
@@ -40,12 +41,13 @@ const LocationDropdown = ({
       <option value="Gampaha">Gampaha</option>
       <option value="Kalutara">Kalutara</option>
     </select>
-    );
-  };
-  LocationDropdown.propTypes = {
-    value: PropTypes.string,
-    onChange: PropTypes.func.isRequired,
-    placeholder: PropTypes.string,
-  };
-  export default LocationDropdown;
-  
+  );
+};
+
+LocationDropdown.propTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+};
+
+export default LocationDropdown;
