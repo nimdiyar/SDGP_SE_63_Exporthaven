@@ -1,14 +1,10 @@
-// src/routes/reviewRoutes.js
-const express = require("express");
-const { submitReview } = require("../controllers/reviewController");
-const { protect } = require("../middleware/authMiddleware");
+// backend/routes/reviewRoutes.js
+import express from "express";
+import { submitReview } from "../controllers/reviewController.js";
+import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-// Create a review for a specific ad
 router.post("/:adId", protect, submitReview);
 
-// Optionally, you can implement a GET route for reviews if needed:
-// router.get("/:adId", protect, getReviews);
-
-module.exports = router;
+export default router;
