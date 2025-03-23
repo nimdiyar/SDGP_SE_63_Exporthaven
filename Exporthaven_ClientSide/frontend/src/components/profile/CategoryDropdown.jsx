@@ -1,35 +1,50 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useState, useEffect } from "react";
+import { FiCamera } from "react-icons/fi";
 
-const CategoryDropdown = ({
-  categories,
-  value,
-  onChange,
-  placeholder = "Select category",
-}) => {
+const CoverPhotoSection = ({ coverPhoto, onChange, onUpload }) => {
+  const [preview, setPreview] = useState(coverPhoto);
+
+  useEffect(() => {
+    setPreview(coverPhoto);
+  }, [coverPhoto]);
+
+  const handleChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      onChange(file);
+      setPreview(URL.createObjectURL(file));
+    }
+  };
+
   return (
-    <select
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      className="w-full px-4 py-2 bg-white border border-[#d9d9d9] rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#3c6e71] focus:border-transparent text-[#353535] appearance-none cursor-pointer hover:border-[#3c6e71] transition-colors"
-    >
-      <option value="" className="text-[#353535]">
-        {placeholder}
-      </option>
-      {categories.map((cat) => (
-        <option key={cat} value={cat} className="text-[#353535]">
-          {cat.charAt(0).toUpperCase() + cat.slice(1)}
-        </option>
-      ))}
-    </select>
+    <div className="relative w-full h-64 md:h-80 lg:h-96 overflow-hidden">
+      {preview ? (
+        <img src={preview} alt="Cover" className="w-full h-full object-cover" />
+      ) : (
+        <div className="w-full h-full bg-[#d9d9d9] flex items-center justify-center text-white">
+          No cover photo
+        </div>
+      )}
+      <div className="absolute bottom-4 right-4 bg-white bg-opacity-90 p-2 rounded-lg shadow-md flex items-center gap-2">
+        <label className="cursor-pointer flex items-center gap-2 text-sm text-[#353535] hover:bg-[#284b63] hover:text-white px-3 py-1 rounded transition-colors">
+          <FiCamera className="shrink-0" />
+          <span>Change Cover Photo</span>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleChange}
+            className="hidden"
+          />
+        </label>
+        <button
+          onClick={onUpload}
+          className="px-3 py-1 bg-[#284b63] text-white text-sm rounded hover:bg-[#3c6e71] transition"
+        >
+          Upload
+        </button>
+      </div>
+    </div>
   );
 };
 
-CategoryDropdown.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
-  value: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string,
-};
-
-export default CategoryDropdown;
+export default CoverPhotoSection;
