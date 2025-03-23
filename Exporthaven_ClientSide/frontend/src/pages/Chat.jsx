@@ -66,7 +66,7 @@ const Chat = () => {
   };
 
   return (
-    <div className="py-8">
+    <div className="pt-8">
       <div className="flex flex-col h-[calc(100vh-64px)] max-w-3xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
         <div className="bg-[#ffffff] border-b border-[#d9d9d9] p-3">
           <div className="flex items-center">
