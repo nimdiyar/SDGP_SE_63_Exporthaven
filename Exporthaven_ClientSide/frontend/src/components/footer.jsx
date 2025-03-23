@@ -44,7 +44,7 @@ const Footer = () => {
                   to="/about-us"
                   className="text-[#ffffff] hover:text-[#3c6e71] transition-colors text-sm"
                 >
-                  About Us
+                  AboutUs
                 </Link>
               </li>
               <li>
