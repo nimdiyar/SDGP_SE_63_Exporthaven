@@ -41,7 +41,7 @@ const ChatInbox = () => {
   };
 
   return (
-    <div className="p-8">
+    <div className="py-8">
       <div className="max-w-2xl mx-auto px-5 py-8 bg-white rounded-lg shadow-md min-h-[calc(100vh-300px)]">
         <h2 className="text-2xl font-semibold text-[#353535] mb-5 border-b border-[#d9d9d9] pb-3">
           Inbox
