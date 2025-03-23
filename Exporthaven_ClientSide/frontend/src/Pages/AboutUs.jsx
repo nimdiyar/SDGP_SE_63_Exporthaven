@@ -24,7 +24,7 @@ const teamMembers = [
   },
   {
     name: "Savindu Rajapaksha",
-    role: "Project Manager & Mobile Solutions Expert",
+    role: "Project Manager & Web Solutions Expert",
     image: savinduImage,
     description:
       "Savindu coordinates project efforts with precision and leverages cutting-edge mobile technologies to deliver streamlined digital experiences that empower Sri Lankan manufacturers and exporters.",
