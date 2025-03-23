@@ -1,6 +1,7 @@
-const Ad = require("../models/Ad");
+//controllers\reviewController.js
+import Ad from "../models/Ad.js";
 
-const submitReview = async (req, res) => {
+export const submitReview = async (req, res) => {
   try {
     const { rating, comment } = req.body;
     const { adId } = req.params;
@@ -24,5 +25,3 @@ const submitReview = async (req, res) => {
       .json({ message: "Error submitting review", error: error.message });
   }
 };
-
-module.exports = { submitReview };
