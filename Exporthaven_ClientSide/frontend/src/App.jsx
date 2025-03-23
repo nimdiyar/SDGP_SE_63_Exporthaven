@@ -1,3 +1,4 @@
+// frontend\src\App.jsx
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -14,7 +15,10 @@ import ExporterAds from "./pages/ExporterAds";
 import ManufacturerAds from "./pages/ManufacturerAds";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdDetails from "./pages/AdDetails";
-import Insights from "./pages/Insights";
+import Insights, {
+  DemandChartPage,
+  DerivativesChartPage,
+} from "./pages/Insights";
 import Pricing from "./pages/Pricing";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
@@ -64,6 +68,14 @@ const AppRoutes = () => (
     <Route path="/exporter-ads" element={<ExporterAds />} />
     <Route path="/manufacturer-ads" element={<ManufacturerAds />} />
     <Route path="/insights" element={<Insights />} />
+    <Route
+      path="/insights/demand-chart/:country"
+      element={<DemandChartPage />}
+    />
+    <Route
+      path="/insights/derivatives/:country/:product"
+      element={<DerivativesChartPage />}
+    />
     <Route path="/pricing" element={<Pricing />} />
     <Route path="/forgot-password" element={<ForgotPassword />} />
     <Route path="/reset-password/:token" element={<ResetPassword />} />
