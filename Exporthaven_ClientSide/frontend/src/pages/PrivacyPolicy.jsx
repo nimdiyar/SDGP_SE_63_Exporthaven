@@ -50,7 +50,7 @@ const PrivacyPolicy = () => {
             </div>
             <p className="text-[#353535] pl-9">
               You have the right to request data deletion or modification at any
-              time. We respect your privacy choices and provide transparent
+              time We respect your privacy choices and provide transparent
               access to the information we maintain about your business and
               activities on our platform.
             </p>
