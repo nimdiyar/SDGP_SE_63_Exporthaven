@@ -40,6 +40,7 @@ const LocationDropdown = ({
       <option value="Colombo">Colombo</option>
       <option value="Gampaha">Gampaha</option>
       <option value="Kalutara">Kalutara</option>
+      <option value="Kalutara">Katharagama</option>
     </select>
   );
 };

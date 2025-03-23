@@ -97,7 +97,7 @@ function ContactUs() {
                     <h3 className="font-semibold text-lg text-[#353535]">
                       Phone
                     </h3>
-                    <p className="text-[#353535] mt-1">+94 11 234 5678</p>
+                    <p className="text-[#353535] mt-1">+94 11 234 5668</p>
                   </div>
                 </div>
               </div>
