@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { Bar, Pie } from "react-chartjs-2";
+import React, { useState, useEffect } from "react";
+import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
   BarElement,
-  ArcElement,
   Title,
   Tooltip,
   Legend,
@@ -16,255 +15,143 @@ ChartJS.register(
   CategoryScale,
   LinearScale,
   BarElement,
-  ArcElement,
   Title,
   Tooltip,
   Legend
 );
 
-const monthCountries = {
-  Jan: [
-    "Australia",
-    "Canada",
-    "China",
-    "France",
-    "Germany",
-    "India",
-    "Italy",
-    "Japan",
-    "Netherlands",
-    "Singapore",
-    "South Korea",
-    "Spain",
-    "UAE",
-    "UK",
-    "USA",
-  ],
-  Feb: [
-    "Australia",
-    "Canada",
-    "China",
-    "France",
-    "Germany",
-    "India",
-    "Italy",
-    "Japan",
-    "Netherlands",
-    "Singapore",
-    "South Korea",
-    "UAE",
-    "UK",
-    "USA",
-  ],
-  Mar: [
-    "Australia",
-    "Canada",
-    "China",
-    "France",
-    "Germany",
-    "India",
-    "Japan",
-    "Netherlands",
-    "South Korea",
-    "UAE",
-    "UK",
-    "USA",
-    "Malaysia",
-    "Maldives",
-  ],
-  April: [
-    "Australia",
-    "Canada",
-    "China",
-    "France",
-    "Germany",
-    "India",
-    "Japan",
-    "Netherlands",
-    "South Korea",
-    "UAE",
-    "UK",
-    "USA",
-    "Italy",
-    "Singapore",
-    "Sweden",
-  ],
-  May: [
-    "Australia",
-    "Canada",
-    "China",
-    "France",
-    "Germany",
-    "India",
-    "Japan",
-    "Netherlands",
-    "South Korea",
-    "UAE",
-    "UK",
-    "USA",
-    "Italy",
-    "Singapore",
-    "Mexico",
-    "Spain",
-  ],
-  June: [
-    "Australia",
-    "Canada",
-    "China",
-    "France",
-    "Germany",
-    "India",
-    "Japan",
-    "Netherlands",
-    "South Korea",
-    "UAE",
-    "UK",
-    "USA",
-    "Italy",
-    "Singapore",
-  ],
-  July: [
-    "Australia",
-    "Canada",
-    "China",
-    "France",
-    "Germany",
-    "India",
-    "Japan",
-    "Netherlands",
-    "South Korea",
-    "UAE",
-    "UK",
-    "USA",
-    "Italy",
-    "Singapore",
-    "Malaysia",
-  ],
-  Aug: [
-    "Australia",
-    "Canada",
-    "China",
-    "France",
-    "Germany",
-    "India",
-    "Japan",
-    "Netherlands",
-    "South Korea",
-    "UAE",
-    "UK",
-    "USA",
-    "Singapore",
-    "Sweden",
-  ],
-  Sep: [
-    "Australia",
-    "Canada",
-    "China",
-    "France",
-    "Germany",
-    "India",
-    "Japan",
-    "Netherlands",
-    "South Korea",
-    "UAE",
-    "UK",
-    "USA",
-    "Mexico",
-    "Qatar",
-  ],
-  Oct: [
-    "Australia",
-    "Canada",
-    "China",
-    "France",
-    "Germany",
-    "India",
-    "Japan",
-    "Netherlands",
-    "South Korea",
-    "UAE",
-    "UK",
-    "USA",
-    "Italy",
-    "Singapore",
-  ],
-  Nov: [
-    "Australia",
-    "Canada",
-    "China",
-    "France",
-    "Germany",
-    "India",
-    "Japan",
-    "Netherlands",
-    "South Korea",
-    "UAE",
-    "UK",
-    "USA",
-    "Singapore",
-  ],
-  Dec: [
-    "Australia",
-    "Canada",
-    "China",
-    "France",
-    "Germany",
-    "India",
-    "Japan",
-    "Netherlands",
-    "South Korea",
-    "UAE",
-    "UK",
-    "USA",
-    "Italy",
-  ],
-};
+// Base URL for ML API, configurable via environment variable
+const mlApiUrl = process.env.REACT_APP_ML_API_URL || "http://localhost:5001";
 
-const productSalesData = {
-  australia: { tea: 250, coconut: 180, spices: 120, cinnamon: 90 },
-  canada: { tea: 320, coconut: 100, spices: 140, cinnamon: 70 },
-  china: { tea: 500, coconut: 120, spices: 350, cinnamon: 110 },
-  france: { tea: 280, coconut: 150, spices: 190, cinnamon: 130 },
-  germany: { tea: 270, coconut: 130, spices: 160, cinnamon: 100 },
-  india: { tea: 420, coconut: 240, spices: 380, cinnamon: 160 },
-  italy: { tea: 200, coconut: 170, spices: 230, cinnamon: 120 },
-  japan: { tea: 380, coconut: 150, spices: 210, cinnamon: 90 },
-  netherlands: { tea: 230, coconut: 120, spices: 140, cinnamon: 80 },
-  singapore: { tea: 260, coconut: 190, spices: 170, cinnamon: 110 },
-  "south korea": { tea: 290, coconut: 140, spices: 160, cinnamon: 90 },
-  spain: { tea: 220, coconut: 160, spices: 190, cinnamon: 100 },
-  uae: { tea: 240, coconut: 180, spices: 200, cinnamon: 120 },
-  uk: { tea: 400, coconut: 150, spices: 180, cinnamon: 110 },
-  usa: { tea: 350, coconut: 200, spices: 230, cinnamon: 140 },
-  malaysia: { tea: 280, coconut: 210, spices: 190, cinnamon: 110 },
-  maldives: { tea: 190, coconut: 230, spices: 160, cinnamon: 90 },
-  sweden: { tea: 240, coconut: 130, spices: 150, cinnamon: 80 },
-  mexico: { tea: 210, coconut: 170, spices: 200, cinnamon: 110 },
-  qatar: { tea: 230, coconut: 160, spices: 180, cinnamon: 100 },
-};
+// List of countries
+const allCountries = [
+  "Albania",
+  "Australia",
+  "Austria",
+  "Azerbaijan",
+  "Bahrain",
+  "Bangladesh",
+  "Belarus",
+  "Belgium",
+  "Bolivia",
+  "Brazil",
+  "Bulgaria",
+  "Cambodia",
+  "Canada",
+  "Chile",
+  "China",
+  "Colombia",
+  "Congo",
+  "Costa Rica",
+  "Croatia (Hrvatska)",
+  "Cyprus",
+  "Czech Republic (Czechia)",
+  "Denmark",
+  "Ecuador",
+  "Egypt",
+  "Estonia",
+  "Ethiopia",
+  "Fiji",
+  "Finland",
+  "France",
+  "Gambia",
+  "Georgia",
+  "Germany",
+  "Ghana",
+  "Greece",
+  "Guatemala",
+  "Guinea",
+  "Haiti",
+  "Hong Kong",
+  "Hungary",
+  "India",
+  "Indonesia",
+  "Iran (Islamic Republic of)",
+  "Iraq",
+  "Ireland",
+  "Israel",
+  "Italy",
+  "Ivory Coast (Cote D'ivoire)",
+  "Jamaica",
+  "Japan",
+  "Jordan",
+  "Kazakhstan",
+  "Kenya",
+  "Korea South (Korea, Republic of)",
+  "Kuwait",
+  "Kyrgyzstan",
+  "Lebanon",
+  "Libyan Arab Jamahiriya",
+  "Lithuania",
+  "Malaysia",
+  "Maldives",
+  "Mauritania",
+  "Mauritius",
+  "Mexico",
+  "Mongolia",
+  "Morocco",
+  "Myanmar",
+  "Netherlands",
+  "New Zealand",
+  "Nigeria",
+  "Norway",
+  "Oman",
+  "Pakistan",
+  "Panama",
+  "Papua New Guinea",
+  "Peru",
+  "Philippines",
+  "Poland",
+  "Portugal",
+  "Qatar",
+  "Romania",
+  "Russian Federation",
+  "Saudi Arabia",
+  "Seychelles",
+  "Sierra Leone",
+  "Singapore",
+  "Slovakia",
+  "Slovenia",
+  "South Africa",
+  "Spain",
+  "Sweden",
+  "Switzerland",
+  "Syrian Arab Republic",
+  "Taiwan, Province of China",
+  "Thailand",
+  "Trinidad and Tobago",
+  "Tunisia",
+  "Turkey",
+  "Uganda",
+  "Ukraine",
+  "United Arab Emirates",
+  "United Kingdom",
+  "United States",
+  "Uzbekistan",
+  "Viet Nam",
+];
 
-const derivativesData = {
-  tea: {
-    "English Tea": 45,
-    "Black Tea": 30,
-    "Green Tea": 25,
-  },
-  coconut: {
-    "Coconut Oil": 40,
-    "Coconut Milk": 30,
-    "Coconut Cream": 30,
-  },
-  spices: {
-    Chillies: 35,
-    Cardamom: 40,
-    Pepper: 25,
-  },
-  cinnamon: {
-    "Cinnamon Powder": 55,
-    "Cinnamon Tea": 25,
-    "Cinnamon Sticks": 20,
-  },
-};
+// List of months
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "April",
+  "May",
+  "June",
+  "July",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
+// Map months to countries
+const monthCountries = {};
+months.forEach((m) => {
+  monthCountries[m] = allCountries;
+});
 
 export const DemandPredictionPage = () => {
   const [selectedMonth, setSelectedMonth] = useState(null);
@@ -273,7 +160,7 @@ export const DemandPredictionPage = () => {
 
   const handleCountryClick = (country) => {
     setSelectedCountry(country);
-    navigate(`/insights/demand-chart/${country}`);
+    navigate(`/insights/demand-chart/${selectedMonth}/${country}`);
   };
 
   return (
@@ -287,6 +174,7 @@ export const DemandPredictionPage = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
+      {/* Left half: Month selection */}
       <div className="w-1/2 backdrop-blur-md bg-white/80 p-12 text-center border-r border-[#d9d9d9]/20">
         <div className="max-w-lg mx-auto">
           <h1 className="text-3xl text-[#353535] font-bold mb-3 tracking-tight">
@@ -313,6 +201,7 @@ export const DemandPredictionPage = () => {
         </div>
       </div>
 
+      {/* Right half: Country selection */}
       <div className="w-1/2 backdrop-blur-sm bg-black/20 p-12 text-center">
         <div className="max-w-lg mx-auto">
           {selectedMonth ? (
@@ -350,22 +239,48 @@ export const DemandPredictionPage = () => {
 };
 
 export const DemandChartPage = () => {
-  const { country } = useParams();
-  const navigate = useNavigate();
-  const countryLower = country.toLowerCase();
+  const { month, country } = useParams();
+  const [predictions, setPredictions] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleProductClick = (product) => {
-    navigate(`/insights/derivatives/${country}/${product}`);
-  };
+  useEffect(() => {
+    const fetchPredictions = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await fetch(
+          `${mlApiUrl}/api/predict?month=${month}&country=${country}`
+        );
+        if (!res.ok) {
+          throw new Error("Failed to fetch predictions");
+        }
+        const data = await res.json();
+        if (data.error) {
+          setError(data.error);
+        } else {
+          setPredictions(data);
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPredictions();
+  }, [month, country]);
 
   const getChartData = () => {
-    const data = productSalesData[countryLower];
+    const labels = Object.keys(predictions);
+    const values = Object.values(predictions);
+
     return {
-      labels: ["Tea", "Coconut", "Spices", "Cinnamon"],
+      labels,
       datasets: [
         {
-          label: `${country} Sales`,
-          data: [data.tea, data.coconut, data.spices, data.cinnamon],
+          label: `Predicted Exports for ${country} - ${month}`,
+          data: values,
           backgroundColor: [
             "rgba(40, 75, 99, 0.8)",
             "rgba(60, 110, 113, 0.8)",
@@ -386,38 +301,24 @@ export const DemandChartPage = () => {
     plugins: {
       tooltip: {
         callbacks: {
-          label: (context) => `Sales: ${context.raw}`,
+          label: (context) => `Predicted: ${context.raw}`,
           title: (context) => `${context[0].label}`,
         },
         padding: 12,
         backgroundColor: "rgba(40, 75, 99, 0.9)",
-        titleFont: {
-          size: 14,
-          weight: "bold",
-        },
-        bodyFont: {
-          size: 13,
-        },
+        titleFont: { size: 14, weight: "bold" },
+        bodyFont: { size: 13 },
       },
       legend: {
         display: true,
         position: "top",
-        labels: {
-          font: {
-            size: 13,
-          },
-          padding: 20,
-        },
+        labels: { font: { size: 13 }, padding: 20 },
       },
     },
-    onClick: (event, elements) => {
-      if (elements.length > 0) {
-        const index = elements[0].index;
-        const products = ["tea", "coconut", "spices", "cinnamon"];
-        handleProductClick(products[index]);
-      }
-    },
   };
+
+  if (loading) return <p>Loading predictions...</p>;
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (
     <div className="max-w-[1000px] mx-auto mt-12 p-10 bg-white rounded-2xl shadow-xl">
@@ -430,98 +331,22 @@ export const DemandChartPage = () => {
       <h2 className="text-3xl font-bold text-[#353535] mb-4">
         Base Product Sales for {country}
       </h2>
-      <p className="text-base text-[#284b63]/80 mb-10">
-        Click on any product bar to view its value-added derivatives
-      </p>
+      {error && (
+        <p className="text-red-600 mb-4">Error fetching predictions: {error}</p>
+      )}
       <div className="h-[500px] mb-10">
-        <Bar data={getChartData()} options={options} />
-      </div>
-    </div>
-  );
-};
-
-export const DerivativesChartPage = () => {
-  const { country, product } = useParams();
-
-  const getPieChartData = () => {
-    const data = derivativesData[product.toLowerCase()];
-    const labels = Object.keys(data);
-    const values = Object.values(data);
-
-    return {
-      labels: labels,
-      datasets: [
-        {
-          data: values,
-          backgroundColor: [
-            "rgba(40, 75, 99, 0.8)",
-            "rgba(60, 110, 113, 0.8)",
-            "rgba(53, 53, 53, 0.8)",
-          ],
-          borderColor: ["#284b63", "#3c6e71", "#353535"],
-          borderWidth: 2,
-        },
-      ],
-    };
-  };
-
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        position: "right",
-        labels: {
-          font: {
-            size: 13,
-          },
-          padding: 20,
-        },
-      },
-      tooltip: {
-        callbacks: {
-          label: (context) => `${context.label}: ${context.raw}%`,
-        },
-        padding: 12,
-        backgroundColor: "rgba(40, 75, 99, 0.9)",
-        titleFont: {
-          size: 14,
-          weight: "bold",
-        },
-        bodyFont: {
-          size: 13,
-        },
-      },
-    },
-  };
-
-  return (
-    <div className="max-w-[1000px] mx-auto mt-12 p-10 bg-white rounded-2xl shadow-xl">
-      <Link
-        to={`/insights/demand-chart/${country}`}
-        className="inline-flex items-center mb-8 text-[#284b63] font-medium hover:text-[#3c6e71] transition-colors duration-300"
-      >
-        <span className="mr-2">←</span> Back to Base Products
-      </Link>
-      <h2 className="text-3xl font-bold text-[#353535] mb-3 capitalize">
-        {product} Derivatives for {country}
-      </h2>
-      <p className="text-base text-[#284b63]/80 mb-10">
-        Percentage distribution of value-added products
-      </p>
-      <div className="h-[500px] max-w-[700px] mx-auto">
-        <Pie data={getPieChartData()} options={options} />
+        {Object.keys(predictions).length > 0 ? (
+          <Bar data={getChartData()} options={options} />
+        ) : (
+          <p>No predictions available or still loading...</p>
+        )}
       </div>
     </div>
   );
 };
 
 const Insights = () => {
-  return (
-    <>
-      <DemandPredictionPage />
-    </>
-  );
+  return <DemandPredictionPage />;
 };
 
 export default Insights;
