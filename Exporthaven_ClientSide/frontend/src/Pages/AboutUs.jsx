@@ -41,7 +41,7 @@ const teamMembers = [
     role: "UI/UX Designer & Front-End Developer",
     image: nadunImage,
     description:
-      "Nadun crafts intuitive and user-friendly interfaces tailored for Sri Lankan manufacturers and exporters, simplifying complex trade processes and enhancing user engagement.",
+      "Nadun crafts intuitive and user-friendly interfaces tailored for Sri Lankan manufacturers and exporters simplifying complex trade processes and enhancing user engagement.",
   },
   {
     name: "Yoshen Tharinda",
