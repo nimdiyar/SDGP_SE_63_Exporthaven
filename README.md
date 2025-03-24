@@ -199,33 +199,7 @@ exporter-manufacturer-platform/
 | `/api/ads/:id` | `PUT`    | Update an ad           |
 | `/api/ads/:id` | `DELETE` | Delete an ad           |
 
----
 
-## Common Issues & Debugging
-
-### ❌ Email Sending Failed
-
-**Fix:**
-
-- Enable **2FA** for your Gmail account.
-- Generate an **App Password** and update `.env`.
-
-### ❌ MongoDB Not Connecting
-
-**Fix:**
-
-- Ensure MongoDB is running with:
-  ```bash
-  mongod --dbpath=/data/db
-  ```
-
-### ❌ Chat Messages Not Updating
-
-**Fix:**
-
-- Ensure **Socket.IO is running** in both frontend & backend.
-
----
 
 ## License
 
