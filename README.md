@@ -114,7 +114,7 @@ Create a `.env` file in the **backend folder** and add:
 ```env
 PORT=5000
 FRONTEND_URL=http://localhost:3000
-MONGO_URI=mongodb://localhost:27017/exporthaven_db2
+MONGO_URI=mongodb:your mangoDb url
 JWT_SECRET=your_jwt_secret
 EMAIL_USER=your_email@gmail.com
 EMAIL_PASS=your_app_password
