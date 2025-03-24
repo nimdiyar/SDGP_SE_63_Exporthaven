@@ -12,7 +12,7 @@ export const getAdminDashboardStats = async (req, res) => {
     const pendingAds = await Ad.countDocuments({ status: "pending" });
     res.json({ totalUsers, totalAds, totalOrders, pendingOrders, pendingAds });
   } catch (error) {
-    res.status(500).json({ message: "Error fetching dashboard data", error });
+    res.status(500).json({ message: "Error fetching dashboard data!", error });
   }
 };
 
