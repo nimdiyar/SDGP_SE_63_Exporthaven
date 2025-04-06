@@ -1,0 +1,5 @@
+# Ignore all saved SARIMA model files
+ml_part/fitted_sarima_models/
+
+# Ignore myenv
+ml_part/myenv/
